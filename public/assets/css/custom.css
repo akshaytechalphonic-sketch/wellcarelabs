@@ -1,0 +1,18 @@
+/* Collapse Sidebar */
+body.sidebar-collapsed .app-sidebar-menu {
+    width: 80px !important;
+    overflow: hidden;
+}
+
+/* Hide big logo, show small */
+body.sidebar-collapsed .logo-lg {
+    display: none !important;
+}
+body.sidebar-collapsed .logo-sm {
+    display: inline-block !important;
+}
+
+/* Hide text labels in collapsed state */
+body.sidebar-collapsed #side-menu span {
+    display: none !important;
+}
