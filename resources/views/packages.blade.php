@@ -158,7 +158,7 @@
                                         @foreach ($showBadges as $b)
                                             <a href="{{ route('packages.show', ['package' => $packageParam]) }}" class="chip-pill"
                                                 title="{{ strip_tags($b) }}">
-                                                <span class="chip-text">{{ $b }}</span>
+                                                <span class="text-truncate">{{ \Illuminate\Support\Str::limit($b, 32) }}</span>
                                             </a>
                                         @endforeach
                                         @if ($totalBadges > $maxShow)
@@ -509,8 +509,11 @@
             font-size: 1.05em;
         }
 
-        /* Bottom spacing for each card */
+        /* Bottom spacing and width for each card (matching special packages) */
         #all-packages .pretty-card {
+            max-width: 340px;
+            margin-left: auto;
+            margin-right: auto;
             margin-bottom: 24px;
         }
 
@@ -674,11 +677,9 @@
 
         #all-packages .img-fixed {
             position: relative;
+            height: 240px;
             width: 100%;
-            aspect-ratio: 5 / 3 !important;
-            height: auto !important;
             overflow: hidden;
-            background: #f5f7fa;
         }
 
         #all-packages .pkg-img {
@@ -689,25 +690,6 @@
             display: block !important;
             object-fit: cover !important;
             object-position: center !important;
-        }
-
-
-
-        /* ================= SHOW FULL TEST NAMES IN PACKAGE CHIPS ================= */
-
-        #all-packages .chip-pill {
-            align-items: flex-start;
-            /* better for multi-line text */
-        }
-
-        #all-packages .chip-text {
-            white-space: normal !important;
-            /* allow wrapping */
-            overflow: visible !important;
-            text-overflow: unset !important;
-            max-width: none !important;
-            line-height: 1.25;
-            display: inline;
         }
     </style>
 
