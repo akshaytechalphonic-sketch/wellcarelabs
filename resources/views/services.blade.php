@@ -17,11 +17,10 @@
 @section('content')
     <section class="page-services" style="background:#f0f4f8;">
         <div style="text-align:center;;margin-bottom:30px;">
-            <h1
+            <h1 class="services-page-heading"
                 style="font-size:2.2rem;font-weight:700;color:#0a2540;position:relative;display:inline-block; margin-top:20px">
-                Wellcare Top <span style="color:#0d6efd;">Book Health Test
-                </span>
-                <div
+                Wellcare Top <span style="color:#0d6efd;">Book Health Test</span>
+                <div class="heading-bar"
                     style="width:80px;height:4px;margin:10px auto 16px;border-radius:3px;background:linear-gradient(90deg,#0047ff,#00ccff);">
                 </div>
             </h1>
@@ -69,20 +68,9 @@
                 </a>
             @endif
 
-            <div class="container-fluid px-4">
-
-                {{-- Mobile carousel wrapper (only wraps on mobile via CSS) --}}
-                <div class="tests-carousel-wrap" id="tests-carousel-wrap">
-                    {{-- Mobile prev/next arrows (hidden on desktop via CSS) --}}
-                    <button class="tests-carousel-arrow tests-carousel-prev" id="testsCarouselPrev" aria-label="Previous tests" type="button">
-                        <i class="fa fa-chevron-left"></i>
-                    </button>
-                    <button class="tests-carousel-arrow tests-carousel-next" id="testsCarouselNext" aria-label="Next tests" type="button">
-                        <i class="fa fa-chevron-right"></i>
-                    </button>
-
+            <div class="container-fluid px-3 px-md-4">
                 <!-- same row logic as Home: center when 1 or 2 results -->
-                <div class="row g-4 {{ $tests->count() <= 2 ? 'justify-content-center' : 'justify-content-start' }}"
+                <div class="row g-3 g-md-4 {{ $tests->count() <= 2 ? 'justify-content-center' : 'justify-content-start' }}"
                     id="test-cards-row">
 
                     @forelse($tests as $t)
@@ -111,7 +99,7 @@
                                     data-test-sell="{{ $displayPrice ?: 0 }}" data-test-mrp="{{ $mrp ?: 0 }}"
                                     data-test-off="{{ $percentOff }}" data-test-save="{{ $savingAmount }}">
 
-                                    <h5 class="card-title package-title mb-2 text-truncate" title="{{ $t->test_name }}">
+                                    <h5 class="card-title package-title mb-2" title="{{ $t->test_name }}">
                                         <a href="{{ route('services.show', ['labTest' => $t->slug]) }}" class="text-decoration-none text-reset">
                                             {{ $t->test_name }}
                                         </a>
@@ -135,25 +123,29 @@
 
                                     </div>
 
-                                    <div
-                                        class="card-footer-block mt-auto d-flex justify-content-between align-items-center pt-2 border-top">
-                                        <!-- inline price row (same as Home) -->
-                                        <div class="price-wrap d-flex align-items-center gap-2 flex-wrap">
-                                            @if ($displayPrice)
-                                                <span
-                                                    class="disc-price">₹{{ number_format($displayPrice, 0, '.', ',') }}</span>
-                                                @if ($mrp > $displayPrice && $percentOff > 0)
+                                    <div class="card-footer-block mt-auto pt-3 border-top">
+                                        <div class="footer-price-section">
+                                            <div class="price-wrap d-flex align-items-center gap-2 flex-wrap">
+                                                @if ($displayPrice)
                                                     <span
-                                                        class="text-small"><s>₹{{ number_format($mrp, 0, '.', ',') }}</s></span>
-                                                    <span class="percent-off">{{ $percentOff }}% OFF</span>
+                                                        class="disc-price">₹{{ number_format($displayPrice, 0, '.', ',') }}</span>
+                                                    @if ($mrp > $displayPrice && $percentOff > 0)
+                                                        <span
+                                                            class="text-small"><s>₹{{ number_format($mrp, 0, '.', ',') }}</s></span>
+                                                        <span class="percent-off">{{ $percentOff }}% OFF</span>
+                                                    @endif
+                                                @else
+                                                    <span class="disc-price">Contact</span>
                                                 @endif
-                                            @else
-                                                <span class="disc-price">Contact</span>
+                                            </div>
+
+                                            @if ($mrp > $displayPrice && $savingAmount > 0)
+                                                <div class="you-save-text">You save ₹{{ number_format($savingAmount, 0, '.', ',') }}</div>
                                             @endif
                                         </div>
 
-                                        <!-- Add to Cart (same classes as Home; pink → green states via JS/CSS) -->
-                                        <div>
+                                        <!-- Add to Cart (pink → green states via JS/CSS) -->
+                                        <div class="cart-btn-container">
                                             <button type="button" id="cart-btn-{{ $t->id }}"
                                                 data-item-id="{{ $t->id }}"
                                                 class="wc-cart-btn add-to-cart text-nowrap"
@@ -163,11 +155,6 @@
                                             </button>
                                         </div>
                                     </div>
-
-                                    @if ($mrp > $displayPrice && $savingAmount > 0)
-                                        <div class="you-save-text">You save
-                                            ₹{{ number_format($savingAmount, 0, '.', ',') }}</div>
-                                    @endif
 
                                 </div>
                             </div>
@@ -192,43 +179,20 @@
                         </div>
 
                     @endempty
+                </div>{{-- /#test-cards-row --}}
 
-                    {{-- Pagination --}}
-                    @if ($tests->hasPages())
-                        <div class="pagination-outer mt-4 mb-4">
-                            <div class="pagination-inner">
-                                {{ $tests->withQueryString()->links('pagination::bootstrap-5') }}
-                            </div>
+                {{-- Pagination --}}
+                @if ($tests->hasPages())
+                    <div class="pagination-outer mt-4 mb-4">
+                        <div class="pagination-inner">
+                            {{ $tests->withQueryString()->links('pagination::bootstrap-5') }}
                         </div>
-                        <style>
-                            .pagination-outer {
-                                width: 100%;
-                                display: flex;
-                                justify-content: center;
-                            }
+                    </div>
+                @endif
 
-                            .pagination-inner {
-                                display: inline-flex;
-                            }
-
-                            .pagination-inner nav {
-                                display: flex;
-                                justify-content: center;
-                            }
-
-                            .pagination-inner .pagination {
-                                justify-content: center;
-                            }
-                        </style>
-                    @endif
-
-
-
-                </div>{{-- /.tests-carousel-wrap --}}
-
-
+            </div>{{-- /.container-fluid --}}
+        </section>
     </section>
-</section>
 
 <!-- ===== Same modal as Home (shared JS expects these IDs) ===== -->
 <div class="modal fade" id="testDetailsModal" tabindex="-1" aria-labelledby="testDetailsTitle" aria-modal="true"
@@ -502,10 +466,14 @@
         else modalEl.classList.add('show');
     });
 
-    // height equalizer (same as Home)
+    // height equalizer (only on tablet/desktop, mobile uses natural height)
     function matchCardHeights() {
         const cards = document.querySelectorAll('.package-style-card');
         if (!cards || cards.length === 0) return;
+        if (window.innerWidth < 576) {
+            cards.forEach(c => c.style.height = 'auto');
+            return;
+        }
         let maxHeight = 0;
         cards.forEach(c => {
             c.style.height = 'auto';
@@ -550,7 +518,7 @@
         const input = document.getElementById('servicesLiveSearchInput');
         const form = document.getElementById('servicesLiveSearchForm');
         const resultsGrid = document.getElementById('test-cards-row');
-        const paginationRow = document.querySelector('.row.mt-4');
+        const paginationRow = document.querySelector('.pagination-outer');
         const clearBtn = document.getElementById('servicesClearBtn');
         let typingTimer;
 
@@ -609,7 +577,7 @@
                 const doc = parser.parseFromString(html, 'text/html');
 
                 const newGrid = doc.getElementById('test-cards-row');
-                const newPagination = doc.querySelector('.row.mt-4');
+                const newPagination = doc.querySelector('.pagination-outer');
 
                 if (newGrid && resultsGrid) {
                     resultsGrid.innerHTML = newGrid.innerHTML;
@@ -648,51 +616,6 @@
         updateClearVisibility();
     });
 
-    // ===== Mobile Carousel: Prev / Next arrows =====
-    (function() {
-        function setupCarouselArrows() {
-            const wrap = document.getElementById('tests-carousel-wrap');
-            const prevBtn = document.getElementById('testsCarouselPrev');
-            const nextBtn = document.getElementById('testsCarouselNext');
-            if (!wrap || !prevBtn || !nextBtn) return;
-
-            // Only activate on mobile (≤767px)
-            function isMobile() { return window.innerWidth <= 767; }
-
-            // Scroll by exactly one "page" = viewport width (holds 4 cards: 2col × 2row)
-            function scrollPage(dir) {
-                if (!isMobile()) return;
-                var pageWidth = window.innerWidth;
-                wrap.scrollBy({ left: dir * pageWidth, behavior: 'smooth' });
-            }
-
-            prevBtn.addEventListener('click', function() { scrollPage(-1); });
-            nextBtn.addEventListener('click', function() { scrollPage(1); });
-
-            // Update arrow visibility based on scroll position
-            function updateArrows() {
-                if (!isMobile()) {
-                    prevBtn.style.opacity = '';
-                    nextBtn.style.opacity = '';
-                    return;
-                }
-                var atStart = wrap.scrollLeft <= 4;
-                var atEnd = wrap.scrollLeft + wrap.clientWidth >= wrap.scrollWidth - 4;
-                prevBtn.style.opacity = atStart ? '0.35' : '1';
-                nextBtn.style.opacity = atEnd ? '0.35' : '1';
-            }
-
-            wrap.addEventListener('scroll', updateArrows, { passive: true });
-            window.addEventListener('resize', updateArrows);
-            updateArrows();
-        }
-
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', setupCarouselArrows);
-        } else {
-            setupCarouselArrows();
-        }
-    })();
 </script>
 
 <style>
@@ -1153,151 +1076,234 @@
         }
     }
 
-    /* ===== MOBILE HORIZONTAL CAROUSEL (≤767px only) ===== */
-    /* Desktop: carousel wrapper is invisible/passthrough */
-    .tests-carousel-wrap {
+    /* ===== RESPONSIVE GRID & MOBILE LAYOUT ===== */
+    .services-page-heading {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #0a2540;
         position: relative;
+        display: inline-block;
+        margin-top: 20px;
     }
 
-    /* Hide arrows on desktop */
-    .tests-carousel-arrow {
-        display: none;
+    .services-page-heading .heading-bar {
+        width: 80px;
+        height: 4px;
+        margin: 10px auto 16px;
+        border-radius: 3px;
+        background: linear-gradient(90deg, #0047ff, #00ccff);
     }
 
-    @media (max-width: 767px) {
-        /* --- Scroll container --- */
-        .tests-carousel-wrap {
-            overflow-x: auto;
-            overflow-y: hidden;
-            -webkit-overflow-scrolling: touch;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            /* hide scrollbar */
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            /* show arrows space */
-            padding-left: 0;
-            padding-right: 0;
-        }
-        .tests-carousel-wrap::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* --- Card grid inside carousel --- */
-        #test-cards-row {
-            /* Show as flex row; each snap-page is exactly viewport-width wide */
-            display: flex !important;
-            flex-wrap: wrap !important;
-            /* 2 cards per row within each snap page */
-            width: max-content; /* grows as needed */
-            margin: 0 !important;
-        }
-
-        /* Each col-card: exactly 50vw wide (2 per visible row) */
-        .row.g-4 > .col-card {
-            flex: 0 0 calc(50vw - 16px) !important;
-            width: calc(50vw - 16px) !important;
-            max-width: calc(50vw - 16px) !important;
-            padding-left: 8px !important;
-            padding-right: 8px !important;
-            margin-bottom: 14px !important;
-            /* Snap every 4th card (after every 2 cols × 2 rows = 4) — handled by snap groups */
-        }
-
-        /* Snap every 2 cols × 2 rows = group of 4: snap at position 1, 5, 9... */
-        /* col-card:nth-child(4n+1) is the first of each group of 4 */
-        .row.g-4 > .col-card:nth-child(4n+1) {
-            scroll-snap-align: start;
-        }
-
-        /* --- Arrow buttons: show on mobile --- */
-        .tests-carousel-arrow {
-            display: flex;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.92);
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.13);
-            align-items: center;
-            justify-content: center;
-            color: #0047ff;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: background 0.18s;
-        }
-        .tests-carousel-arrow:hover {
-            background: #f0f6ff;
-        }
-        .tests-carousel-prev {
-            left: 2px;
-        }
-        .tests-carousel-next {
-            right: 2px;
-        }
-
-        /* Ensure no-results full-width */
-        #test-cards-row .col-12.text-center.py-5 {
-            width: 100vw !important;
-            flex: 0 0 100vw !important;
-        }
-    }
-    /* ===== END MOBILE CAROUSEL ===== */
-
-    /* Responsive custom grid (1 / 2 / 2 / 3 / 3) */
-    .row.g-4 {
-        --gutter-x: 1rem;
+    /* Grid Columns */
+    #test-cards-row {
+        margin-left: -8px;
+        margin-right: -8px;
     }
 
-    @media (max-width: 768px) {
-        .row.g-4 {
-            --gutter-x: .75rem;
-        }
-    }
-
-    .row.g-4>.col-card {
+    #test-cards-row > .col-card {
         box-sizing: border-box;
-        padding-left: var(--gutter-x);
-        padding-right: var(--gutter-x);
-        margin-bottom: 28px;
+        padding-left: 8px;
+        padding-right: 8px;
+        margin-bottom: 20px;
         flex: 0 0 100% !important;
         width: 100% !important;
         max-width: 100% !important;
     }
 
-    @media (min-width:576px) {
-        .row.g-4>.col-card {
+    @media (min-width: 576px) {
+        #test-cards-row > .col-card {
             flex: 0 0 50% !important;
             width: 50% !important;
             max-width: 50% !important;
+            margin-bottom: 24px;
         }
     }
 
-    @media (min-width:768px) {
-        .row.g-4>.col-card {
-            flex: 0 0 50% !important;
-            width: 50% !important;
-            max-width: 50% !important;
+    @media (min-width: 992px) {
+        #test-cards-row {
+            margin-left: -12px;
+            margin-right: -12px;
         }
-    }
-
-    @media (min-width:992px) {
-        .row.g-4>.col-card {
+        #test-cards-row > .col-card {
+            padding-left: 12px;
+            padding-right: 12px;
             flex: 0 0 33.333333% !important;
             width: 33.333333% !important;
             max-width: 33.333333% !important;
+            margin-bottom: 28px;
         }
     }
 
-    @media (min-width:1200px) {
-        .row.g-4>.col-card {
-            flex: 0 0 33.333333% !important;
-            width: 33.333333% !important;
-            max-width: 33.333333% !important;
+    /* Card title: clean 2-line clamp */
+    .package-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #0a2540;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        min-height: 2.8rem;
+    }
+
+    .package-style-card {
+        border-radius: 14px;
+        border: 1px solid #edf2f7;
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(10, 37, 64, 0.05);
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .package-style-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 24px rgba(10, 37, 64, 0.1);
+    }
+
+    /* Card Footer: clean price & Add to Cart button layout */
+    .card-footer-block {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .footer-price-section {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+    }
+
+    .price-wrap {
+        min-width: 0;
+        flex: 1 1 auto;
+    }
+
+    .cart-btn-container {
+        flex-shrink: 0;
+    }
+
+    /* ===== MOBILE SPECIFIC STYLES (≤768px) ===== */
+    @media (max-width: 768px) {
+        .page-services {
+            padding-bottom: 40px;
+        }
+
+        .services-page-heading {
+            font-size: 1.6rem !important;
+            margin-top: 14px !important;
+            line-height: 1.3 !important;
+            padding: 0 10px;
+        }
+
+        .services-page-heading .heading-bar {
+            width: 60px !important;
+            height: 3px !important;
+            margin: 8px auto 14px !important;
+        }
+
+        .page-services .text-muted {
+            font-size: 0.95rem !important;
+            padding: 0 15px;
+        }
+
+        .services-search-bar {
+            max-width: 92% !important;
+            margin: 0 auto !important;
+        }
+
+        .lab-tests {
+            padding-top: 1.5rem !important;
+            padding-bottom: 70px !important;
+        }
+
+        .lab-tests .container-fluid {
+            padding-left: 14px !important;
+            padding-right: 14px !important;
+        }
+
+        .package-title {
+            font-size: 1.05rem !important;
+            min-height: auto !important;
+            margin-bottom: 8px !important;
+        }
+
+        .package-desc-wrapper {
+            margin-bottom: 10px !important;
+        }
+
+        .package-desc {
+            font-size: 0.88rem !important;
+            line-height: 1.35rem !important;
+        }
+
+        .card-footer-block {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 12px !important;
+            padding-top: 12px !important;
+        }
+
+        .footer-price-section {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            flex-wrap: wrap !important;
+            gap: 6px !important;
+            width: 100% !important;
+        }
+
+        .disc-price {
+            font-size: 1.25rem !important;
+        }
+
+        .price-wrap .text-small {
+            font-size: 0.95rem !important;
+            margin-left: 6px !important;
+        }
+
+        .percent-off {
+            font-size: 0.75rem !important;
+            padding: 3px 8px !important;
+        }
+
+        .you-save-text {
+            font-size: 0.85rem !important;
+            margin-top: 0 !important;
+        }
+
+        .cart-btn-container {
+            width: 100% !important;
+        }
+
+        .cart-btn-container .wc-cart-btn {
+            width: 100% !important;
+            min-height: 42px !important;
+            padding: 8px 16px !important;
+            font-size: 0.95rem !important;
+            border-radius: 10px !important;
+            justify-content: center !important;
+        }
+
+        /* Ensure pagination does not get hidden under floating icons */
+        .pagination-outer {
+            margin-top: 24px !important;
+            margin-bottom: 40px !important;
+            padding: 0 10px;
+        }
+
+        .pagination-inner .pagination {
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .pagination-inner .page-link {
+            padding: 6px 12px;
+            font-size: 0.88rem;
         }
     }
 
