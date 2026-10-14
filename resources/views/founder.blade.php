@@ -264,6 +264,7 @@
             padding: 3px 14px;
             border-radius: 20px;
             margin-bottom: 10px;
+            white-space: nowrap;
         }
 
         .timeline-title {
@@ -280,6 +281,11 @@
             margin: 0;
         }
 
+        .timeline-desc strong {
+            color: #0a2540;
+            font-weight: 700;
+        }
+
         .milestones-footer {
             text-align: center;
             margin-top: 35px;
@@ -292,6 +298,7 @@
             font-size: 1.25rem;
             color: #0047ff;
             letter-spacing: -0.2px;
+            font-style: italic;
         }
 
         @media (max-width: 768px) {
@@ -450,39 +457,47 @@
                     <span class="timeline-year-badge">2018</span>
                     <div class="timeline-title">The Beginning</div>
                     <p class="timeline-desc">
-                        The journey began with a vision to build a trusted and patient-focused healthcare and diagnostics platform.
+                        Wellcare Labs began its healthcare journey with a vision to deliver <strong>accessible, reliable, and patient-centric</strong> diagnostic services.
+                    </p>
+                </div>
+
+                <div class="timeline-block">
+                    <span class="timeline-year-badge">2018–2024</span>
+                    <div class="timeline-title">Experience &amp; Trust</div>
+                    <p class="timeline-desc">
+                        Built strong experience in diagnostics, laboratory operations, preventive healthcare, and patient care, with a continued focus on <strong>quality, accuracy, and timely service</strong>.
                     </p>
                 </div>
 
                 <div class="timeline-block">
                     <span class="timeline-year-badge">2024</span>
-                    <div class="timeline-title">Wellcare Labs</div>
+                    <div class="timeline-title">Expanding Preventive Healthcare</div>
                     <p class="timeline-desc">
-                        Wellcare Labs was established with a focus on accessible, reliable, and technology-driven diagnostic services.
+                        Expanded the vision towards preventive health checkups, home sample collection, digital reports, and technology-enabled healthcare solutions.
                     </p>
                 </div>
 
                 <div class="timeline-block">
                     <span class="timeline-year-badge">2025</span>
-                    <div class="timeline-title">Recognition & Growth</div>
+                    <div class="timeline-title">Corporate Milestone</div>
                     <p class="timeline-desc">
-                        Expanded diagnostic services and strengthened the brand’s presence, receiving the Maharashtra Business Icon Award 2025.
+                        <strong>Wellcare Medical Services Pvt. Ltd.</strong> was incorporated, establishing a stronger foundation for structured growth and expansion in diagnostics and preventive healthcare.
                     </p>
                 </div>
 
                 <div class="timeline-block">
-                    <span class="timeline-year-badge">2026</span>
-                    <div class="timeline-title">Expanding the Vision</div>
+                    <span class="timeline-year-badge">2025</span>
+                    <div class="timeline-title">Quality &amp; Recognition</div>
                     <p class="timeline-desc">
-                        Continued expansion of diagnostic services, health packages, home sample collection, digital reporting, and technology-driven healthcare solutions.
+                        Achieved <strong>ISO 9001:2015 certification</strong>, received <strong>DPIIT Startup India recognition</strong>, and was honoured with the <strong>Maharashtra Business Icon Award 2025</strong>.
                     </p>
                 </div>
 
                 <div class="timeline-block">
-                    <span class="timeline-year-badge">Today</span>
-                    <div class="timeline-title">Building for Tomorrow</div>
+                    <span class="timeline-year-badge">2025–Present</span>
+                    <div class="timeline-title">Growing for a Healthier India</div>
                     <p class="timeline-desc">
-                        Wellcare Labs continues its journey toward becoming a trusted diagnostic healthcare brand, with a vision to make quality diagnostics accessible across India.
+                        Wellcare Labs continues to expand its diagnostic and preventive healthcare ecosystem through pathology testing, health packages, home sample collection, digital services, and community healthcare initiatives.
                     </p>
                 </div>
 
