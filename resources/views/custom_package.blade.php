@@ -2,9 +2,180 @@
 
 
 
-@section('title', 'Wellcare Labs – Customize Your Health Test Package Online')
+@section('title', isset($page) && !empty($page->meta_title) ? $page->meta_title : 'Customise Health Package Online | Pick Tests, Save Up to 70%')
 
-@section('meta_description', 'Design your own personalized health test package with Wellcare Labs. Choose specific lab tests, build a tailored health checkup plan, and get accurate diagnostic results with flexible options and expert support.')
+@section('meta_description', isset($page) && !empty($page->meta_description) ? $page->meta_description : 'Build your own health checkup package with Wellcare Labs. Pick 2 or more tests, see your total price live, and book online. Save up to 70% on lab tests.')
+
+@section('seo')
+  @if(isset($page) && !empty($page->meta_tags))
+    {!! $page->meta_tags !!}
+  @endif
+
+  {{-- SEO Structured Data: FAQPage & DiagnosticLab Schema --}}
+  @php
+    $faqSchema = [
+      '@context' => 'https://schema.org',
+      '@type' => 'FAQPage',
+      'mainEntity' => [
+        [
+          '@type' => 'Question',
+          'name' => 'What is a customised health package?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'It is a set of lab tests you choose yourself. You decide what goes in, so the package fits your age, symptoms, and health goals.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'How do I customise my health package at Wellcare Labs?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'Pick tests from the list on this page. Each one lands in your Selected Tests list with a live total. Then add the list to your cart and check out.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'How many tests do I need to select?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'You need at least two tests to create a custom package. Add as many more as you need.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'Can I remove a test after adding it?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'Yes. Every selected test has a \'Remove\' option, and the total updates right away. Change your list as often as you like before checkout.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'Is a custom package cheaper than a ready-made one?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'Often, yes, because you skip tests you don\'t need. Many tests also carry a discount. Your total shows before you pay, so you can compare both options.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'Which tests can I include?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'You can choose from sugar, thyroid, cholesterol, liver, kidney, vitamin, hormone, infection, and tumour marker tests, plus many specialised ones.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'Do I need a doctor\'s prescription?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'Not for most routine screening tests. If you have symptoms or a medical condition, check with your doctor first, so the right tests make your list.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'Do I need to fast before my tests?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'It depends on the test. Blood sugar and cholesterol tests often need 8 to 12 hours of fasting. Plain water is fine. Our team can confirm for your list.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'Who should choose a custom package?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'Anyone with a specific concern, such as diabetes, thyroid trouble, or low vitamins. It also suits people who need follow-up tests after a full-body checkup.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'How often should I get tested?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'For a general check, many doctors suggest once a year. If you manage a condition, your doctor may ask for tests more often.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'Can I build a package for my parents?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'Yes. Choose tests that match their age and history. For seniors, common picks include sugar, cholesterol, kidney, thyroid, and vitamin tests.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'How is a custom package different from a full body checkup?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'A full body checkup is a fixed bundle for general screening. A custom package is built by you, so it can be smaller, more focused, or more advanced.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'Can someone help me choose tests?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'Yes. Call +91 915 898 0898 or chat with us on WhatsApp. We will explain what each test checks before you book.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'When will I get my report?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'The timeline depends on the tests you pick. Our team shares it with you at the time of booking.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'Are the prices on this page final?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'Each test shows its discounted price and original price. Your cart shows the full total before checkout. Rates can change, so confirm at booking.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'What if one result is out of range?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'One odd value does not always mean disease. Food, stress, and water intake can shift results. Show your report to a doctor who knows your history.'
+          ]
+        ]
+      ]
+    ];
+
+    $medicalSchema = [
+      '@context' => 'https://schema.org',
+      '@type' => 'DiagnosticLab',
+      'name' => 'Wellcare Diagnostic Center',
+      'alternateName' => 'Wellcare Labs',
+      'url' => 'https://wellcarelabs.in/customize-package',
+      'telephone' => '+919158980898',
+      'priceRange' => '₹49 - ₹1099',
+      'address' => [
+        '@type' => 'PostalAddress',
+        'addressLocality' => 'Pune',
+        'addressRegion' => 'Maharashtra',
+        'addressCountry' => 'IN'
+      ],
+      'serviceArea' => [
+        '@type' => 'AdministrativeArea',
+        'name' => 'Pune'
+      ],
+      'description' => 'Build your customized health checkup package online with Wellcare Labs Pune. Pick 2 or more tests from ₹49 each and save up to 70%.'
+    ];
+  @endphp
+  <script type="application/ld+json">
+  {!! json_encode($faqSchema, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+  </script>
+  <script type="application/ld+json">
+  {!! json_encode($medicalSchema, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+  </script>
+@endsection
 
 
 @section('content')
@@ -245,6 +416,887 @@
     </div>
   </div>
 </div>
+
+{{-- ================= CUSTOMISE PACKAGE COMPREHENSIVE GUIDE & SEO SECTIONS ================= --}}
+<section id="customize-guide-section" class="cp-guide-section mt-5 pt-3">
+  <div class="container">
+
+    <!-- HERO / LEAD CARD -->
+    <div class="cp-hero-card mb-5">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+          <span class="cp-hero-badge">
+            <i class="fa fa-sliders me-2"></i> Tailored Preventive Healthcare
+          </span>
+          <h2 class="cp-hero-title mb-3">
+            Customised Health Package Online: <span class="cp-gradient-text">Stop Paying for Tests You Don't Need</span>
+          </h2>
+          <div class="cp-hero-text">
+            <p>
+              Most ready-made health packages come with a long list of tests. You may need only five of them. So why pay for fifty?
+            </p>
+            <p class="mb-0">
+              With the Wellcare Labs package builder, you pick the tests. You watch the price add up on screen. You book only what matters to you and your family. Choose at least two tests, add them to your cart, and you are done in minutes.
+            </p>
+          </div>
+          <div class="cp-cta-strip">
+            <a href="#customizeSearchForm" class="cp-btn cp-btn-primary">
+              <i class="fa fa-sliders me-2"></i> Build My Custom Package Now
+            </a>
+            <a href="{{ route('packages.index') }}" class="cp-btn cp-btn-outline">
+              <i class="fa fa-boxes-stacked me-2"></i> Browse Standard Packages
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-4 text-center">
+          <div class="cp-quick-stats-box p-4 rounded-4 shadow-sm bg-white border">
+            <div class="cp-stat-item pb-3 mb-3 border-bottom">
+              <div class="cp-stat-num text-primary">₹49<span class="fs-6 text-muted fw-normal">/test</span></div>
+              <div class="cp-stat-label text-muted">Starting Test Price</div>
+            </div>
+            <div class="cp-stat-item pb-3 mb-3 border-bottom">
+              <div class="cp-stat-num text-success">Up to 70%</div>
+              <div class="cp-stat-label text-muted">Direct Lab Discounts</div>
+            </div>
+            <div class="cp-stat-item">
+              <div class="cp-stat-num text-dark">Live Total</div>
+              <div class="cp-stat-label text-muted">Transparent Real-Time Pricing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT IS A CUSTOMISED HEALTH PACKAGE -->
+    <div class="cp-section-block mb-5">
+      <div class="text-center max-w-750 mx-auto mb-4">
+        <span class="cp-pill-tag">Flexible Testing</span>
+        <h3 class="cp-block-title">What Is a Customised Health Package?</h3>
+        <div class="cp-title-divider mx-auto"></div>
+        <p class="cp-lead-text text-center">
+          A customised health package is a bundle of lab tests that you build yourself. Think of it like ordering a thali instead of a fixed set meal. You pick the dishes you actually want.
+        </p>
+        <p class="text-muted">
+          At Wellcare Labs, it works like this. You browse the tests, tap Add, and your list grows. The price total updates as you go. Once you have two or more tests, you have your own package.
+        </p>
+      </div>
+
+      <!-- Feature Table -->
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="cp-table-responsive shadow-sm">
+            <table class="table cp-table align-middle">
+              <thead>
+                <tr>
+                  <th style="width: 35%;">Feature</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fw-bold text-dark">Minimum tests</td>
+                  <td><span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill">2 tests</span></td>
+                </tr>
+                <tr>
+                  <td class="fw-bold text-dark">Starting price</td>
+                  <td><strong class="text-success">From ₹49 per test</strong></td>
+                </tr>
+                <tr>
+                  <td class="fw-bold text-dark">Price view</td>
+                  <td>Live total on screen with instant discount calculations</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold text-dark">Test types</td>
+                  <td>Blood, urine, hormone, infection, vitamin, tumor marker, and more</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold text-dark">Best for</td>
+                  <td>Targeted checks, specific symptom evaluation, and doctor follow-up tests</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold text-dark">Booking</td>
+                  <td>Online cart, instant call booking, or direct WhatsApp assistance</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY BUILD YOUR OWN PACKAGE INSTEAD OF READY-MADE -->
+    <div class="cp-section-block mb-5">
+      <div class="text-center max-w-750 mx-auto mb-4">
+        <span class="cp-pill-tag">Smart Comparison</span>
+        <h3 class="cp-block-title">Why Build Your Own Package Instead of a Ready-Made One?</h3>
+        <div class="cp-title-divider mx-auto"></div>
+        <p class="cp-lead-text text-center">
+          Ready-made packages are handy. But they are one-size-fits-all. A 25-year-old who feels tired all day and a 55-year-old with high sugar do not need the same list.
+        </p>
+      </div>
+
+      <div class="row justify-content-center mb-4">
+        <div class="col-lg-10">
+          <div class="cp-table-responsive shadow-sm">
+            <table class="table cp-table align-middle">
+              <thead>
+                <tr>
+                  <th style="width: 25%;">Comparison Factor</th>
+                  <th style="width: 37.5%;" class="text-muted">Ready-made package</th>
+                  <th style="width: 37.5%;" class="text-primary bg-primary-subtle">Custom package</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fw-bold text-dark">Test list</td>
+                  <td class="text-muted">Fixed by the lab</td>
+                  <td class="fw-bold text-primary bg-primary-subtle"><i class="fa fa-check-circle text-success me-2"></i>Chosen by you</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold text-dark">Cost control</td>
+                  <td class="text-muted">You pay for the whole bundle</td>
+                  <td class="fw-bold text-primary bg-primary-subtle"><i class="fa fa-check-circle text-success me-2"></i>You pay for chosen tests only</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold text-dark">Best for</td>
+                  <td class="text-muted">General broad screening</td>
+                  <td class="fw-bold text-primary bg-primary-subtle"><i class="fa fa-check-circle text-success me-2"></i>One concern, symptom, or follow-up</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold text-dark">Flexibility</td>
+                  <td class="text-muted">Low (fixed parameters)</td>
+                  <td class="fw-bold text-primary bg-primary-subtle"><i class="fa fa-check-circle text-success me-2"></i>Add or remove anytime live</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real life benefits -->
+      <div class="p-4 rounded-4 bg-light border">
+        <h4 class="h5 fw-bold text-dark mb-3"><i class="fa fa-lightbulb-o text-warning me-2"></i>Here is what that means in real life:</h4>
+        <div class="row g-3">
+          <div class="col-md-6 col-lg-3">
+            <div class="cp-benefit-card p-3 bg-white rounded-3 shadow-sm h-100 border">
+              <div class="cp-benefit-icon mb-2 text-primary fs-4"><i class="fa fa-forward"></i></div>
+              <h5 class="h6 fw-bold mb-1">Skip repeat tests</h5>
+              <p class="small text-muted mb-0">Did your lipid profile last month? Leave it out and save money.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="cp-benefit-card p-3 bg-white rounded-3 shadow-sm h-100 border">
+              <div class="cp-benefit-icon mb-2 text-primary fs-4"><i class="fa fa-bullseye"></i></div>
+              <h5 class="h6 fw-bold mb-1">Focus on one concern</h5>
+              <p class="small text-muted mb-0">Deep dive into thyroid, vitamins, or diabetes without paying for 50 extras.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="cp-benefit-card p-3 bg-white rounded-3 shadow-sm h-100 border">
+              <div class="cp-benefit-icon mb-2 text-primary fs-4"><i class="fa fa-user-md"></i></div>
+              <h5 class="h6 fw-bold mb-1">Follow doctor's advice</h5>
+              <p class="small text-muted mb-0">Select the exact tests written on your doctor's prescription.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="cp-benefit-card p-3 bg-white rounded-3 shadow-sm h-100 border">
+              <div class="cp-benefit-icon mb-2 text-primary fs-4"><i class="fa fa-users"></i></div>
+              <h5 class="h6 fw-bold mb-1">Personalise for family</h5>
+              <p class="small text-muted mb-0">Build an age-tailored list for parents, spouse, or yourself.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW TO CUSTOMISE IN 4 EASY STEPS -->
+    <div class="cp-section-block mb-5">
+      <div class="text-center max-w-750 mx-auto mb-4">
+        <span class="cp-pill-tag">Simple Process</span>
+        <h3 class="cp-block-title">How to Customise Your Health Package in 4 Easy Steps</h3>
+        <div class="cp-title-divider mx-auto"></div>
+        <p class="text-muted">Create your custom package in under two minutes using our interactive builder above.</p>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="cp-step-card p-4 rounded-4 bg-white border h-100 text-center shadow-sm">
+            <div class="cp-step-circle mb-3">1</div>
+            <h4 class="h6 fw-bold text-dark mb-2">Browse the test list</h4>
+            <p class="small text-muted mb-0">Each card shows the test name, a short note, the price, and the discount percentage.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="cp-step-card p-4 rounded-4 bg-white border h-100 text-center shadow-sm">
+            <div class="cp-step-circle mb-3">2</div>
+            <h4 class="h6 fw-bold text-dark mb-2">Click Add</h4>
+            <p class="small text-muted mb-0">The test moves to your Selected Tests list with its price. Changed your mind? Use Remove.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="cp-step-card p-4 rounded-4 bg-white border h-100 text-center shadow-sm">
+            <div class="cp-step-circle mb-3">3</div>
+            <h4 class="h6 fw-bold text-dark mb-2">Check your total</h4>
+            <p class="small text-muted mb-0">You need at least two tests to create a package. Watch your live discounted total update on screen.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="cp-step-card p-4 rounded-4 bg-white border h-100 text-center shadow-sm">
+            <div class="cp-step-circle mb-3">4</div>
+            <h4 class="h6 fw-bold text-dark mb-2">Add to cart & checkout</h4>
+            <p class="small text-muted mb-0">The button replaces anything already in your cart with your custom list, so build your full list first.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cp-tip-box p-3 rounded-3 bg-white border-start border-4 border-primary shadow-sm d-flex align-items-center gap-3">
+        <div class="fs-3 text-primary"><i class="fa fa-info-circle"></i></div>
+        <div>
+          <strong class="text-dark">A quick tip:</strong> <span class="text-muted">Not sure about a test name? Open its page with <strong>Read more</strong>. You will see what it measures, sample requirements, and why doctors order it.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- POPULAR TESTS TABLE -->
+    <div class="cp-section-block mb-5">
+      <div class="d-flex flex-wrap justify-content-between align-items-end mb-3">
+        <div>
+          <span class="cp-pill-tag">Price Catalog</span>
+          <h3 class="cp-block-title mb-1">Popular Tests You Can Add to Your Package</h3>
+          <p class="text-muted mb-0">Here are some common picks and their prices as shown on the page today. Prices can change, so check the live total.</p>
+        </div>
+        <a href="#customizeSearchForm" class="cp-btn cp-btn-primary btn-sm mt-2 mt-md-0">
+          <i class="fa fa-search me-1"></i> Search All Tests
+        </a>
+      </div>
+
+      <div class="cp-table-responsive shadow-sm">
+        <table class="table cp-table align-middle">
+          <thead>
+            <tr>
+              <th style="width: 28%;">Health area</th>
+              <th style="width: 47%;">Example tests</th>
+              <th style="width: 25%;">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa fa-tint text-danger me-2"></i>Sugar and diabetes</td>
+              <td>Sugar Fasting, HbA1c, Insulin Fasting</td>
+              <td><span class="cp-price-tag">₹49, ₹299, ₹499</span></td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa fa-heartbeat text-primary me-2"></i>Thyroid</td>
+              <td>TSH, Free TFT, Anti TPO</td>
+              <td><span class="cp-price-tag">₹99, ₹599, ₹1,099</span></td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa fa-heart text-danger me-2"></i>Heart</td>
+              <td>Lipid Profile, hs-CRP, Homocysteine</td>
+              <td><span class="cp-price-tag">₹299, ₹399, ₹799</span></td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa fa-medkit text-success me-2"></i>Liver and kidney</td>
+              <td>LFT, Kidney Profile, Urine Complete</td>
+              <td><span class="cp-price-tag">₹399, ₹399, ₹129</span></td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa fa-sun-o text-warning me-2"></i>Vitamins and iron</td>
+              <td>Vitamin D3, Vitamin B12, Ferritin</td>
+              <td><span class="cp-price-tag">₹499, ₹399, ₹399</span></td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa fa-shield text-info me-2"></i>Blood health</td>
+              <td>CBC Complete Hemogram</td>
+              <td><span class="cp-price-tag">₹149</span></td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa fa-thermometer-half text-danger me-2"></i>Fever and infection</td>
+              <td>Fever Panel Basic, Dengue NS-1 Rapid, Widal Slide</td>
+              <td><span class="cp-price-tag">₹300, ₹399, ₹199</span></td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa fa-flask text-primary me-2"></i>Hormones</td>
+              <td>Cortisol (8 AM), Prolactin, Testosterone</td>
+              <td><span class="cp-price-tag">₹599, ₹299, ₹449</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SAMPLE CUSTOM PACKAGES YOU CAN BUILD -->
+    <div class="cp-section-block mb-5">
+      <div class="text-center max-w-750 mx-auto mb-4">
+        <span class="cp-pill-tag">Curated Ideas</span>
+        <h3 class="cp-block-title">Sample Custom Packages You Can Build</h3>
+        <div class="cp-title-divider mx-auto"></div>
+        <p class="text-muted">Need ideas? These sample lists use real prices from the page. They are examples, not medical advice.</p>
+      </div>
+
+      <div class="cp-table-responsive shadow-sm mb-4">
+        <table class="table cp-table align-middle">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Package idea</th>
+              <th style="width: 55%;">Tests inside</th>
+              <th style="width: 20%;">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa fa-bolt text-warning me-2"></i>Low-energy check</td>
+              <td>CBC, Vitamin D3, Vitamin B12, Ferritin, TSH</td>
+              <td><strong class="text-success fs-5">₹1,545</strong></td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa fa-cutlery text-danger me-2"></i>Sugar watch</td>
+              <td>Sugar Fasting, HbA1c, Insulin Fasting, Microalbumin</td>
+              <td><strong class="text-success fs-5">₹1,346</strong></td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa fa-heartbeat text-danger me-2"></i>Heart focus</td>
+              <td>Lipid Profile, hs-CRP, HbA1c, Lipoprotein (a)</td>
+              <td><strong class="text-success fs-5">₹1,396</strong></td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa fa-balance-scale text-primary me-2"></i>Thyroid plus</td>
+              <td>Thyroid Profile (T3, T4, TSH), Anti TPO</td>
+              <td><strong class="text-success fs-5">₹1,398</strong></td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa fa-filter text-info me-2"></i>Liver and kidney</td>
+              <td>LFT, Kidney Profile, Urine Complete</td>
+              <td><strong class="text-success fs-5">₹927</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Assistance Bar -->
+      <div class="cp-help-bar p-3 p-md-4 rounded-4 bg-white border shadow-sm d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div class="d-flex align-items-center gap-3">
+          <div class="cp-help-icon text-primary fs-3"><i class="fa fa-user-md"></i></div>
+          <div>
+            <strong class="text-dark d-block">Need help choosing the right tests?</strong>
+            <span class="text-muted">Our certified lab team is always available for test selection guidance via the floating Call or WhatsApp button on your screen.</span>
+          </div>
+        </div>
+        <div>
+          <a href="#customizeSearchForm" class="cp-btn cp-btn-primary btn-sm">
+            <i class="fa fa-search me-1"></i> Search & Select Tests
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHO SHOULD CHOOSE A CUSTOM HEALTH PACKAGE -->
+    <div class="cp-section-block mb-5">
+      <div class="text-center max-w-750 mx-auto mb-4">
+        <span class="cp-pill-tag">Ideal Candidates</span>
+        <h3 class="cp-block-title">Who Should Choose a Custom Health Package?</h3>
+        <div class="cp-title-divider mx-auto"></div>
+        <p class="text-muted">A custom package fits many people. It works especially well if you:</p>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6 col-lg-4">
+          <div class="cp-card-check p-3 bg-white rounded-3 border shadow-sm h-100 d-flex gap-3 align-items-start">
+            <div class="text-primary fs-4 mt-1"><i class="fa fa-check-circle"></i></div>
+            <div>
+              <strong class="text-dark d-block mb-1">Chronic Condition Tracking</strong>
+              <span class="text-muted small">Live with diabetes, thyroid problems, or high cholesterol and need regular quarterly checks.</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cp-card-check p-3 bg-white rounded-3 border shadow-sm h-100 d-flex gap-3 align-items-start">
+            <div class="text-primary fs-4 mt-1"><i class="fa fa-check-circle"></i></div>
+            <div>
+              <strong class="text-dark d-block mb-1">Unexplained Symptoms</strong>
+              <span class="text-muted small">Feel tired, lose hair, gain or lose weight, or get fevers often and need targeted diagnostics.</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cp-card-check p-3 bg-white rounded-3 border shadow-sm h-100 d-flex gap-3 align-items-start">
+            <div class="text-primary fs-4 mt-1"><i class="fa fa-check-circle"></i></div>
+            <div>
+              <strong class="text-dark d-block mb-1">Family Health Risks</strong>
+              <span class="text-muted small">Have a family history of diabetes, heart disease, or thyroid illness and want proactive screening.</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cp-card-check p-3 bg-white rounded-3 border shadow-sm h-100 d-flex gap-3 align-items-start">
+            <div class="text-primary fs-4 mt-1"><i class="fa fa-check-circle"></i></div>
+            <div>
+              <strong class="text-dark d-block mb-1">Post-Checkup Follow-up</strong>
+              <span class="text-muted small">Already did a full body checkup and need re-testing for only 2 or 3 borderline markers.</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cp-card-check p-3 bg-white rounded-3 border shadow-sm h-100 d-flex gap-3 align-items-start">
+            <div class="text-primary fs-4 mt-1"><i class="fa fa-check-circle"></i></div>
+            <div>
+              <strong class="text-dark d-block mb-1">Senior Citizens (Age 40+)</strong>
+              <span class="text-muted small">Are over 40 and want a closer, customized look at heart, blood sugar, and kidney parameters.</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cp-card-check p-3 bg-white rounded-3 border shadow-sm h-100 d-flex gap-3 align-items-start">
+            <div class="text-primary fs-4 mt-1"><i class="fa fa-check-circle"></i></div>
+            <div>
+              <strong class="text-dark d-block mb-1">Hormone & Fertility Tracking</strong>
+              <span class="text-muted small">Want to track specific hormones, such as AMH, prolactin, or testosterone, with your doctor's advice.</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="cp-card-check p-3 bg-white rounded-3 border shadow-sm d-flex gap-3 align-items-center">
+            <div class="text-primary fs-4"><i class="fa fa-check-circle"></i></div>
+            <div>
+              <strong class="text-dark">Busy Professionals:</strong>
+              <span class="text-muted small ms-1">You are busy and don't want a time-consuming 90-test bundle when only a few key values matter to you.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW TO CHOOSE THE RIGHT TESTS -->
+    <div class="cp-section-block mb-5">
+      <div class="text-center max-w-750 mx-auto mb-4">
+        <span class="cp-pill-tag">Selection Guide</span>
+        <h3 class="cp-block-title">How to Choose the Right Tests</h3>
+        <div class="cp-title-divider mx-auto"></div>
+        <p class="cp-lead-text text-center">Start with a simple question: What am I trying to find out?</p>
+      </div>
+
+      <div class="row g-3 mb-4">
+        <div class="col-md-6 col-lg">
+          <div class="p-3 bg-white rounded-3 border shadow-sm h-100">
+            <div class="fw-bold text-primary mb-1"><i class="fa fa-calendar me-1"></i> Age</div>
+            <p class="small text-muted mb-0">Needs change as you grow older. Heart and sugar checks matter more after 40.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg">
+          <div class="p-3 bg-white rounded-3 border shadow-sm h-100">
+            <div class="fw-bold text-primary mb-1"><i class="fa fa-stethoscope me-1"></i> Symptoms</div>
+            <p class="small text-muted mb-0">Tiredness, thirst, hair fall, or joint pain each point to different tests.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg">
+          <div class="p-3 bg-white rounded-3 border shadow-sm h-100">
+            <div class="fw-bold text-primary mb-1"><i class="fa fa-users me-1"></i> Family History</div>
+            <p class="small text-muted mb-0">If a parent has diabetes, add HbA1c and fasting blood sugar tests.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg">
+          <div class="p-3 bg-white rounded-3 border shadow-sm h-100">
+            <div class="fw-bold text-primary mb-1"><i class="fa fa-file-text-o me-1"></i> Doctor's Advice</div>
+            <p class="small text-muted mb-0">If your doctor gave you a list, copy it exactly to avoid unnecessary extras.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg">
+          <div class="p-3 bg-white rounded-3 border shadow-sm h-100">
+            <div class="fw-bold text-primary mb-1"><i class="fa fa-clock-o me-1"></i> Last Test Date</div>
+            <p class="small text-muted mb-0">Skip anything you checked in the last few months, unless your doctor says otherwise.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real world example card -->
+      <div class="cp-example-card p-4 rounded-4 bg-light border">
+        <div class="d-flex align-items-start gap-3">
+          <div class="cp-avatar-circle bg-primary text-white fs-4 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; flex-shrink: 0;">
+            <i class="fa fa-user"></i>
+          </div>
+          <div>
+            <h5 class="h6 fw-bold text-dark mb-1">Here is an example:</h5>
+            <p class="text-muted mb-0">
+              Riya is 29 and tired all the time. She does not need a huge package. CBC, ferritin, vitamin B12, vitamin D3, and TSH make a smart first step. If those look fine, she can add more later.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW TO PREPARE FOR YOUR TESTS -->
+    <div class="cp-section-block mb-5">
+      <div class="text-center max-w-750 mx-auto mb-4">
+        <span class="cp-pill-tag">Sample Accuracy</span>
+        <h3 class="cp-block-title">How to Prepare for Your Tests</h3>
+        <div class="cp-title-divider mx-auto"></div>
+        <p class="cp-lead-text text-center">A little prep gives you cleaner, more dependable results.</p>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6 col-lg-4">
+          <div class="cp-prep-card p-3 rounded-3 bg-white border shadow-sm h-100">
+            <div class="cp-prep-num">1</div>
+            <h5 class="h6 fw-bold text-dark mb-1">Fasting (8–12 Hours)</h5>
+            <p class="small text-muted mb-0">Fast for 8 to 12 hours if your tests need it (e.g. sugar, lipid). Drinking plain water is completely fine.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cp-prep-card p-3 rounded-3 bg-white border shadow-sm h-100">
+            <div class="cp-prep-num">2</div>
+            <h5 class="h6 fw-bold text-dark mb-1">Daily Medications</h5>
+            <p class="small text-muted mb-0">Keep taking your regular medicines unless your doctor explicitly advised you to pause them.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cp-prep-card p-3 rounded-3 bg-white border shadow-sm h-100">
+            <div class="cp-prep-num">3</div>
+            <h5 class="h6 fw-bold text-dark mb-1">Avoid Alcohol & Hard Workouts</h5>
+            <p class="small text-muted mb-0">Skip alcohol for 24 hours and avoid strenuous physical workouts the day before your sample collection.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cp-prep-card p-3 rounded-3 bg-white border shadow-sm h-100">
+            <div class="cp-prep-num">4</div>
+            <h5 class="h6 fw-bold text-dark mb-1">Morning Sampling</h5>
+            <p class="small text-muted mb-0">Plan early morning sampling for time-sensitive tests such as Cortisol (8 AM) and fasting insulin.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cp-prep-card p-3 rounded-3 bg-white border shadow-sm h-100">
+            <div class="cp-prep-num">5</div>
+            <h5 class="h6 fw-bold text-dark mb-1">Disclose Supplements</h5>
+            <p class="small text-muted mb-0">Tell our phlebotomist about supplements you take. Biotin, for example, can alter certain hormone results.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cp-prep-card p-3 rounded-3 bg-white border shadow-sm h-100">
+            <div class="cp-prep-num">6</div>
+            <h5 class="h6 fw-bold text-dark mb-1">Special Collection Steps</h5>
+            <p class="small text-muted mb-0">Follow clean catch midstream instructions for urine tests or collection guidelines for stool/swab samples.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW TO READ YOUR REPORT -->
+    <div class="cp-section-block mb-5">
+      <div class="text-center max-w-750 mx-auto mb-4">
+        <span class="cp-pill-tag">Clinical Understanding</span>
+        <h3 class="cp-block-title">How to Read Your Report</h3>
+        <div class="cp-title-divider mx-auto"></div>
+      </div>
+
+      <div class="row g-4 justify-content-center">
+        <div class="col-lg-6">
+          <div class="p-4 bg-white rounded-4 border shadow-sm h-100 border-start border-4 border-info">
+            <div class="fs-2 text-info mb-2"><i class="fa fa-line-chart"></i></div>
+            <h4 class="h6 fw-bold text-dark mb-2">Reference Ranges Are Signals</h4>
+            <p class="text-muted mb-0">
+              Your report shows your value next to a normal range. A number outside that range is a signal, not a diagnosis. Hydration, stress, food, and medicines can all change it.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-4 bg-white rounded-4 border shadow-sm h-100 border-start border-4 border-success">
+            <div class="fs-2 text-success mb-2"><i class="fa fa-user-md"></i></div>
+            <h4 class="h6 fw-bold text-dark mb-2">Consult Your Physician</h4>
+            <p class="text-muted mb-0">
+              So take a breath. Then share the full report with a doctor. They will read it with your history and decide if you need more tests. Please don't start treatment on your own.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY BOOK YOUR CUSTOM PACKAGE WITH WELLCARE LABS -->
+    <div class="cp-section-block mb-5">
+      <div class="text-center max-w-750 mx-auto mb-4">
+        <span class="cp-pill-tag">Why Choose Us</span>
+        <h3 class="cp-block-title">Why Book Your Custom Package With Wellcare Labs</h3>
+        <div class="cp-title-divider mx-auto"></div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6 col-lg">
+          <div class="cp-trust-card p-3 rounded-3 bg-white border text-center shadow-sm h-100">
+            <div class="cp-trust-icon mb-2 text-primary fs-3"><i class="fa fa-sliders"></i></div>
+            <h5 class="h6 fw-bold text-dark mb-1">You are in control</h5>
+            <p class="small text-muted mb-0">Pick your tests and see your live discounted total right on screen.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg">
+          <div class="cp-trust-card p-3 rounded-3 bg-white border text-center shadow-sm h-100">
+            <div class="cp-trust-icon mb-2 text-success fs-3"><i class="fa fa-tag"></i></div>
+            <h5 class="h6 fw-bold text-dark mb-1">Clear discounts</h5>
+            <p class="small text-muted mb-0">Original and offer price shown clearly, with savings up to 70% on select tests.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg">
+          <div class="cp-trust-card p-3 rounded-3 bg-white border text-center shadow-sm h-100">
+            <div class="cp-trust-icon mb-2 text-info fs-3"><i class="fa fa-th-list"></i></div>
+            <h5 class="h6 fw-bold text-dark mb-1">Wide choice</h5>
+            <p class="small text-muted mb-0">Routine checks and advanced specialised tests sit conveniently on one page.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg">
+          <div class="cp-trust-card p-3 rounded-3 bg-white border text-center shadow-sm h-100">
+            <div class="cp-trust-icon mb-2 text-warning fs-3"><i class="fa fa-comments-o"></i></div>
+            <h5 class="h6 fw-bold text-dark mb-1">Real people to help</h5>
+            <p class="small text-muted mb-0">Call or WhatsApp our team anytime you need test guidance before booking.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg">
+          <div class="cp-trust-card p-3 rounded-3 bg-white border text-center shadow-sm h-100">
+            <div class="cp-trust-icon mb-2 text-danger fs-3"><i class="fa fa-check-circle"></i></div>
+            <h5 class="h6 fw-bold text-dark mb-1">Simple booking</h5>
+            <p class="small text-muted mb-0">Add tests to cart, check out seamlessly, and enjoy on-time home sample collection.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GOOD TO KNOW BEFORE YOU BOOK -->
+    <div class="cp-section-block mb-5">
+      <div class="p-4 rounded-4 bg-warning-subtle border border-warning d-flex align-items-center gap-3">
+        <div class="fs-2 text-warning flex-shrink-0"><i class="fa fa-exclamation-triangle"></i></div>
+        <div>
+          <h4 class="h6 fw-bold text-dark mb-1">Good to Know Before You Book</h4>
+          <p class="small text-dark mb-0">
+            Lab tests support your doctor's decisions. They do not replace a medical visit. If you have chest pain, trouble breathing, or any emergency symptom, go to a hospital right away instead of booking a test.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FREQUENTLY ASKED QUESTIONS -->
+    <div class="cp-section-block mb-5">
+      <div class="text-center max-w-750 mx-auto mb-4">
+        <span class="cp-pill-tag">Got Questions?</span>
+        <h3 class="cp-block-title">Frequently Asked Questions</h3>
+        <div class="cp-title-divider mx-auto"></div>
+        <p class="text-muted">Clear, honest answers about building, customising, and booking your health checkup package at Wellcare Labs.</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="cp-faq-accordion">
+
+            <!-- FAQ 1 -->
+            <div class="cp-faq-item">
+              <button class="cp-faq-question" type="button" aria-expanded="false">
+                <span class="cp-faq-num">01</span>
+                <span class="cp-faq-qtext">What is a customised health package?</span>
+                <i class="fa fa-chevron-down cp-faq-arrow"></i>
+              </button>
+              <div class="cp-faq-answer">
+                <p>It is a set of lab tests you choose yourself. You decide what goes in, so the package fits your age, symptoms, and health goals.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="cp-faq-item">
+              <button class="cp-faq-question" type="button" aria-expanded="false">
+                <span class="cp-faq-num">02</span>
+                <span class="cp-faq-qtext">How do I customise my health package at Wellcare Labs?</span>
+                <i class="fa fa-chevron-down cp-faq-arrow"></i>
+              </button>
+              <div class="cp-faq-answer">
+                <p>Pick tests from the list on this page. Each one lands in your Selected Tests list with a live total. Then add the list to your cart and check out.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="cp-faq-item">
+              <button class="cp-faq-question" type="button" aria-expanded="false">
+                <span class="cp-faq-num">03</span>
+                <span class="cp-faq-qtext">How many tests do I need to select?</span>
+                <i class="fa fa-chevron-down cp-faq-arrow"></i>
+              </button>
+              <div class="cp-faq-answer">
+                <p>You need at least two tests to create a custom package. Add as many more as you need.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="cp-faq-item">
+              <button class="cp-faq-question" type="button" aria-expanded="false">
+                <span class="cp-faq-num">04</span>
+                <span class="cp-faq-qtext">Can I remove a test after adding it?</span>
+                <i class="fa fa-chevron-down cp-faq-arrow"></i>
+              </button>
+              <div class="cp-faq-answer">
+                <p>Yes. Every selected test has a 'Remove' option, and the total updates right away. Change your list as often as you like before checkout.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="cp-faq-item">
+              <button class="cp-faq-question" type="button" aria-expanded="false">
+                <span class="cp-faq-num">05</span>
+                <span class="cp-faq-qtext">Is a custom package cheaper than a ready-made one?</span>
+                <i class="fa fa-chevron-down cp-faq-arrow"></i>
+              </button>
+              <div class="cp-faq-answer">
+                <p>Often, yes, because you skip tests you don't need. Many tests also carry a discount. Your total shows before you pay, so you can compare both options.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="cp-faq-item">
+              <button class="cp-faq-question" type="button" aria-expanded="false">
+                <span class="cp-faq-num">06</span>
+                <span class="cp-faq-qtext">Which tests can I include?</span>
+                <i class="fa fa-chevron-down cp-faq-arrow"></i>
+              </button>
+              <div class="cp-faq-answer">
+                <p>You can choose from sugar, thyroid, cholesterol, liver, kidney, vitamin, hormone, infection, and tumour marker tests, plus many specialised ones.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 7 -->
+            <div class="cp-faq-item">
+              <button class="cp-faq-question" type="button" aria-expanded="false">
+                <span class="cp-faq-num">07</span>
+                <span class="cp-faq-qtext">Do I need a doctor's prescription?</span>
+                <i class="fa fa-chevron-down cp-faq-arrow"></i>
+              </button>
+              <div class="cp-faq-answer">
+                <p>Not for most routine screening tests. If you have symptoms or a medical condition, check with your doctor first, so the right tests make your list.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 8 -->
+            <div class="cp-faq-item">
+              <button class="cp-faq-question" type="button" aria-expanded="false">
+                <span class="cp-faq-num">08</span>
+                <span class="cp-faq-qtext">Do I need to fast before my tests?</span>
+                <i class="fa fa-chevron-down cp-faq-arrow"></i>
+              </button>
+              <div class="cp-faq-answer">
+                <p>It depends on the test. Blood sugar and cholesterol tests often need 8 to 12 hours of fasting. Plain water is fine. Our team can confirm for your list.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 9 -->
+            <div class="cp-faq-item">
+              <button class="cp-faq-question" type="button" aria-expanded="false">
+                <span class="cp-faq-num">09</span>
+                <span class="cp-faq-qtext">Who should choose a custom package?</span>
+                <i class="fa fa-chevron-down cp-faq-arrow"></i>
+              </button>
+              <div class="cp-faq-answer">
+                <p>Anyone with a specific concern, such as diabetes, thyroid trouble, or low vitamins. It also suits people who need follow-up tests after a full-body checkup.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 10 -->
+            <div class="cp-faq-item">
+              <button class="cp-faq-question" type="button" aria-expanded="false">
+                <span class="cp-faq-num">10</span>
+                <span class="cp-faq-qtext">How often should I get tested?</span>
+                <i class="fa fa-chevron-down cp-faq-arrow"></i>
+              </button>
+              <div class="cp-faq-answer">
+                <p>For a general check, many doctors suggest once a year. If you manage a condition, your doctor may ask for tests more often.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 11 -->
+            <div class="cp-faq-item">
+              <button class="cp-faq-question" type="button" aria-expanded="false">
+                <span class="cp-faq-num">11</span>
+                <span class="cp-faq-qtext">Can I build a package for my parents?</span>
+                <i class="fa fa-chevron-down cp-faq-arrow"></i>
+              </button>
+              <div class="cp-faq-answer">
+                <p>Yes. Choose tests that match their age and history. For seniors, common picks include sugar, cholesterol, kidney, thyroid, and vitamin tests.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 12 -->
+            <div class="cp-faq-item">
+              <button class="cp-faq-question" type="button" aria-expanded="false">
+                <span class="cp-faq-num">12</span>
+                <span class="cp-faq-qtext">How is a custom package different from a full body checkup?</span>
+                <i class="fa fa-chevron-down cp-faq-arrow"></i>
+              </button>
+              <div class="cp-faq-answer">
+                <p>A full body checkup is a fixed bundle for general screening. A custom package is built by you, so it can be smaller, more focused, or more advanced.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 13 -->
+            <div class="cp-faq-item">
+              <button class="cp-faq-question" type="button" aria-expanded="false">
+                <span class="cp-faq-num">13</span>
+                <span class="cp-faq-qtext">Can someone help me choose tests?</span>
+                <i class="fa fa-chevron-down cp-faq-arrow"></i>
+              </button>
+              <div class="cp-faq-answer">
+                <p>Yes. Call +91 915 898 0898 or chat with us on WhatsApp. We will explain what each test checks before you book.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 14 -->
+            <div class="cp-faq-item">
+              <button class="cp-faq-question" type="button" aria-expanded="false">
+                <span class="cp-faq-num">14</span>
+                <span class="cp-faq-qtext">When will I get my report?</span>
+                <i class="fa fa-chevron-down cp-faq-arrow"></i>
+              </button>
+              <div class="cp-faq-answer">
+                <p>The timeline depends on the tests you pick. Our team shares it with you at the time of booking.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 15 -->
+            <div class="cp-faq-item">
+              <button class="cp-faq-question" type="button" aria-expanded="false">
+                <span class="cp-faq-num">15</span>
+                <span class="cp-faq-qtext">Are the prices on this page final?</span>
+                <i class="fa fa-chevron-down cp-faq-arrow"></i>
+              </button>
+              <div class="cp-faq-answer">
+                <p>Each test shows its discounted price and original price. Your cart shows the full total before checkout. Rates can change, so confirm at booking.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 16 -->
+            <div class="cp-faq-item">
+              <button class="cp-faq-question" type="button" aria-expanded="false">
+                <span class="cp-faq-num">16</span>
+                <span class="cp-faq-qtext">What if one result is out of range?</span>
+                <i class="fa fa-chevron-down cp-faq-arrow"></i>
+              </button>
+              <div class="cp-faq-answer">
+                <p>One odd value does not always mean disease. Food, stress, and water intake can shift results. Show your report to a doctor who knows your history.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINAL CTA BANNER -->
+    <div class="cp-final-banner p-4 p-md-5 rounded-4 text-center text-white mb-4">
+      <h3 class="fw-bold mb-2 fs-2">Ready? Customise Your Health Package and Book Online Today</h3>
+      <p class="mb-4 text-white-50 max-w-750 mx-auto">
+        Pick at least two tests, watch the real-time price calculate live, and schedule timely home sample collection anywhere across Pune.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="#customizeSearchForm" class="cp-btn cp-btn-light">
+          <i class="fa fa-sliders me-2 text-primary"></i> Build My Custom Package Now
+        </a>
+        <a href="{{ route('packages.index') }}" class="cp-btn cp-btn-outline-light">
+          <i class="fa fa-boxes-stacked me-2"></i> Browse Standard Packages
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
 @endsection
 
 @section('scripts')
@@ -912,6 +1964,47 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // FAQ accordion interaction
+  const faqItems = document.querySelectorAll('.cp-faq-item');
+  faqItems.forEach(item => {
+    const questionBtn = item.querySelector('.cp-faq-question');
+    if (!questionBtn) return;
+    questionBtn.addEventListener('click', function () {
+      const isOpen = item.classList.contains('active');
+      faqItems.forEach(other => {
+        if (other !== item) {
+          other.classList.remove('active');
+          const otherBtn = other.querySelector('.cp-faq-question');
+          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+      if (isOpen) {
+        item.classList.remove('active');
+        questionBtn.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('active');
+        questionBtn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Smooth scroll to test search / builder
+  document.querySelectorAll('a[href="#customizeSearchForm"], a[href="#search-tests"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      const target = document.getElementById('customizeSearchForm') || document.getElementById('search-tests');
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const input = document.getElementById('search-tests');
+        if (input) input.focus();
+      }
+    });
+  });
+});
+</script>
+
 <style>
 /* ====================
    NEW wc-search styles
@@ -1426,5 +2519,468 @@ document.addEventListener('DOMContentLoaded', function(){
         margin-left: 3px !important;
     }
 }
+
+  /* ================= CUSTOMISE PACKAGE GUIDE STYLES ================= */
+  .cp-guide-section {
+    background: #ffffff;
+    color: #1e293b;
+    font-family: inherit;
+  }
+
+  .cp-guide-section > .container {
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  .cp-gradient-text {
+    background: linear-gradient(135deg, #0d6efd 0%, #00c6ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .cp-title-divider {
+    width: 70px;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #0047ff, #00ccff);
+    margin: 12px 0 20px;
+  }
+
+  .cp-pill-tag {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: #eaf2ff;
+    color: #0047ff;
+    margin-bottom: 10px;
+  }
+
+  /* --- Hero Card --- */
+  .cp-hero-card {
+    background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 36px 32px;
+    box-shadow: 0 10px 30px rgba(10, 37, 64, 0.04);
+  }
+
+  .cp-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #eff6ff;
+    color: #1d4ed8;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(29, 78, 216, 0.2);
+  }
+
+  .cp-hero-title {
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: #0a2540;
+    line-height: 1.3;
+  }
+
+  .cp-hero-text p {
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: #475569;
+    margin-bottom: 12px;
+  }
+
+  .cp-quick-stats-box {
+    border-color: #e2e8f0 !important;
+  }
+
+  .cp-stat-num {
+    font-size: 1.85rem;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .cp-stat-label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  /* --- CTA Buttons Strip --- */
+  .cp-cta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .cp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 22px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    border: none;
+  }
+
+  .cp-btn-primary {
+    background: linear-gradient(135deg, #0d6efd 0%, #0056b3 100%);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(13, 110, 253, 0.3);
+  }
+
+  .cp-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13, 110, 253, 0.4);
+    color: #ffffff !important;
+  }
+
+  .cp-btn-phone {
+    background: #f1f5f9;
+    color: #0a2540 !important;
+    border: 1px solid #cbd5e1;
+  }
+
+  .cp-btn-phone:hover {
+    background: #e2e8f0;
+    color: #0a2540 !important;
+    transform: translateY(-2px);
+  }
+
+  .cp-btn-whatsapp {
+    background: #25D366;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+  }
+
+  .cp-btn-whatsapp:hover {
+    background: #20bd5a;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+  }
+
+  .cp-btn-light {
+    background: #ffffff;
+    color: #0a2540 !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  }
+
+  .cp-btn-light:hover {
+    background: #f8fafc;
+    transform: translateY(-2px);
+  }
+
+  .cp-btn-outline {
+    background: #ffffff;
+    color: #0d6efd !important;
+    border: 1.5px solid #0d6efd;
+  }
+
+  .cp-btn-outline:hover {
+    background: #eff6ff;
+    color: #0056b3 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.15);
+  }
+
+  .cp-btn-outline-light {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(4px);
+  }
+
+  .cp-btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: #ffffff !important;
+    transform: translateY(-2px);
+  }
+
+  .cp-btn-phone-light {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);
+  }
+
+  .cp-btn-phone-light:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff !important;
+    transform: translateY(-2px);
+  }
+
+  /* --- Section Titles --- */
+  .cp-block-title {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: #0a2540;
+    margin-bottom: 6px;
+  }
+
+  .cp-lead-text {
+    font-size: 1.12rem;
+    line-height: 1.8;
+    color: #334155;
+    margin-bottom: 16px;
+  }
+
+  /* --- Tables --- */
+  .cp-table-responsive {
+    border-radius: 16px;
+    overflow-x: auto;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+  }
+
+  .cp-table {
+    margin-bottom: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .cp-table thead th {
+    background: #f8fafc;
+    color: #0a2540;
+    font-weight: 700;
+    font-size: 0.92rem;
+    padding: 16px 20px;
+    border-bottom: 2px solid #e2e8f0;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .cp-table tbody td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.96rem;
+    color: #334155;
+  }
+
+  .cp-table tbody tr:hover td {
+    background: #fbfdff;
+  }
+
+  .cp-price-tag {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #10b981;
+  }
+
+  /* --- Step Cards --- */
+  .cp-step-card {
+    transition: all 0.25s ease;
+  }
+  .cp-step-card:hover {
+    border-color: #0d6efd !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(10, 37, 64, 0.06);
+  }
+  .cp-step-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0d6efd 0%, #00c6ff 100%);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
+  }
+
+  /* --- Benefit Cards & Check Cards --- */
+  .cp-benefit-card, .cp-card-check {
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .cp-benefit-card:hover, .cp-card-check:hover {
+    transform: translateY(-2px);
+    border-color: #0d6efd !important;
+    box-shadow: 0 6px 18px rgba(13, 110, 253, 0.08) !important;
+  }
+
+  /* --- Prep Cards --- */
+  .cp-prep-card {
+    position: relative;
+    padding-left: 56px !important;
+    transition: all 0.2s ease;
+  }
+  .cp-prep-card:hover {
+    border-color: #0d6efd !important;
+    box-shadow: 0 6px 16px rgba(13, 110, 253, 0.06);
+  }
+  .cp-prep-num {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #eaf2ff;
+    color: #0d6efd;
+    font-weight: 800;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* --- Trust Cards --- */
+  .cp-trust-card {
+    transition: all 0.25s ease;
+  }
+  .cp-trust-card:hover {
+    transform: translateY(-4px);
+    border-color: #cbd5e1 !important;
+    box-shadow: 0 10px 24px rgba(10, 37, 64, 0.06) !important;
+  }
+
+  /* --- FAQ Accordion --- */
+  .cp-faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cp-faq-item {
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    background: #ffffff;
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cp-faq-item:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(10, 37, 64, 0.04);
+  }
+
+  .cp-faq-item.active {
+    border-color: #0d6efd;
+    box-shadow: 0 6px 18px rgba(13, 110, 253, 0.08);
+  }
+
+  .cp-faq-question {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    font-size: 1.04rem;
+    font-weight: 700;
+    color: #0a2540;
+    transition: background-color 0.2s ease;
+  }
+
+  .cp-faq-question:hover {
+    background-color: #f8faff;
+  }
+
+  .cp-faq-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #f1f5f9;
+    color: #0d6efd;
+    font-weight: 800;
+    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+
+  .cp-faq-item.active .cp-faq-num {
+    background: #0d6efd;
+    color: #ffffff;
+  }
+
+  .cp-faq-qtext {
+    flex: 1;
+    margin: 0;
+    line-height: 1.45;
+  }
+
+  .cp-faq-arrow {
+    font-size: 0.9rem;
+    color: #64748b;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .cp-faq-item.active .cp-faq-arrow {
+    transform: rotate(180deg);
+    color: #0d6efd;
+  }
+
+  .cp-faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0, 1, 0, 1), padding 0.35s ease;
+    padding: 0 22px;
+    color: #475569;
+    font-size: 0.98rem;
+    line-height: 1.75;
+    background: #ffffff;
+  }
+
+  .cp-faq-item.active .cp-faq-answer {
+    max-height: 600px;
+    padding: 4px 22px 20px 70px;
+    transition: max-height 0.4s ease-in, padding 0.35s ease;
+  }
+
+  .cp-faq-answer p {
+    margin: 0;
+  }
+
+  /* --- Final Banner --- */
+  .cp-final-banner {
+    background: linear-gradient(135deg, #0a2540 0%, #0d6efd 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .cp-hero-card {
+      padding: 24px 18px;
+    }
+    .cp-hero-title {
+      font-size: 1.65rem;
+    }
+    .cp-block-title {
+      font-size: 1.45rem;
+    }
+    .cp-faq-question {
+      padding: 14px 16px;
+      gap: 12px;
+      font-size: 0.97rem;
+    }
+    .cp-faq-item.active .cp-faq-answer {
+      padding: 4px 16px 16px 16px;
+    }
+    .cp-cta-strip {
+      flex-direction: column;
+    }
+    .cp-cta-strip .cp-btn {
+      width: 100%;
+    }
+  }
 </style>
 @endsection
