@@ -399,7 +399,9 @@
             <tbody>
               <tr>
                 <td>
-                  <div class="fw-bold sp-pkg-name">Essential Diabetes Panel</div>
+                  <a href="{{ route('packages.special.show', 'wellcare-essential-diabetes-panel') }}" class="text-decoration-none">
+                    <div class="fw-bold sp-pkg-name">Essential Diabetes Panel</div>
+                  </a>
                   <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Diabetes Care</span>
                 </td>
                 <td class="text-secondary small">
@@ -412,12 +414,14 @@
                   <span class="sp-best-for">Sugar screening</span>
                 </td>
                 <td class="text-center">
-                  <a href="#packages-special" class="btn btn-sm sp-btn-table">Book Plan</a>
+                  <a href="{{ route('packages.special.show', 'wellcare-essential-diabetes-panel') }}" class="btn btn-sm sp-btn-table">Book Plan</a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div class="fw-bold sp-pkg-name">Smart Fever Profile</div>
+                  <a href="{{ route('packages.special.show', 'wellcare-smart-fever-profile') }}" class="text-decoration-none">
+                    <div class="fw-bold sp-pkg-name">Smart Fever Profile</div>
+                  </a>
                   <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">Fever Care</span>
                 </td>
                 <td class="text-secondary small">
@@ -430,12 +434,14 @@
                   <span class="sp-best-for">Fever with body ache</span>
                 </td>
                 <td class="text-center">
-                  <a href="#packages-special" class="btn btn-sm sp-btn-table">Book Plan</a>
+                  <a href="{{ route('packages.special.show', 'wellcare-smart-fever-profile') }}" class="btn btn-sm sp-btn-table">Book Plan</a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div class="fw-bold sp-pkg-name">Essential Vitamin Profile</div>
+                  <a href="{{ route('packages.special.show', 'wellcare-essential-vitamin-profile') }}" class="text-decoration-none">
+                    <div class="fw-bold sp-pkg-name">Essential Vitamin Profile</div>
+                  </a>
                   <span class="badge bg-info-subtle text-info-emphasis border border-info-subtle">Vital Nutrients</span>
                 </td>
                 <td class="text-secondary small">
@@ -448,12 +454,14 @@
                   <span class="sp-best-for">Tiredness, low energy</span>
                 </td>
                 <td class="text-center">
-                  <a href="#packages-special" class="btn btn-sm sp-btn-table">Book Plan</a>
+                  <a href="{{ route('packages.special.show', 'wellcare-essential-vitamin-profile') }}" class="btn btn-sm sp-btn-table">Book Plan</a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div class="fw-bold sp-pkg-name">Smart Arthritis Package</div>
+                  <a href="{{ route('packages.special.show', 'wellcare-smart-arthritis-package') }}" class="text-decoration-none">
+                    <div class="fw-bold sp-pkg-name">Smart Arthritis Package</div>
+                  </a>
                   <span class="badge bg-secondary-subtle text-secondary-emphasis border">Bone & Joint</span>
                 </td>
                 <td class="text-secondary small">
@@ -466,12 +474,14 @@
                   <span class="sp-best-for">Joint pain</span>
                 </td>
                 <td class="text-center">
-                  <a href="#packages-special" class="btn btn-sm sp-btn-table">Book Plan</a>
+                  <a href="{{ route('packages.special.show', 'wellcare-smart-arthritis-package') }}" class="btn btn-sm sp-btn-table">Book Plan</a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div class="fw-bold sp-pkg-name">Essential ANC Package</div>
+                  <a href="{{ route('packages.special.show', 'wellcare-essential-anc-package') }}" class="text-decoration-none">
+                    <div class="fw-bold sp-pkg-name">Essential ANC Package</div>
+                  </a>
                   <span class="badge bg-pink-subtle text-danger border border-danger-subtle">Maternity Care</span>
                 </td>
                 <td class="text-secondary small">
@@ -484,12 +494,14 @@
                   <span class="sp-best-for">Pregnancy checks</span>
                 </td>
                 <td class="text-center">
-                  <a href="#packages-special" class="btn btn-sm sp-btn-table">Book Plan</a>
+                  <a href="{{ route('packages.special.show', 'wellcare-essential-anc-package') }}" class="btn btn-sm sp-btn-table">Book Plan</a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div class="fw-bold sp-pkg-name">Smart Gym Panel</div>
+                  <a href="{{ route('packages.special.show', 'wellcare-smart-gym-panel') }}" class="text-decoration-none">
+                    <div class="fw-bold sp-pkg-name">Smart Gym Panel</div>
+                  </a>
                   <span class="badge bg-success-subtle text-success border border-success-subtle">Fitness & Athlete</span>
                 </td>
                 <td class="text-secondary small">
@@ -502,12 +514,14 @@
                   <span class="sp-best-for">Regular gym-goers</span>
                 </td>
                 <td class="text-center">
-                  <a href="#packages-special" class="btn btn-sm sp-btn-table">Book Plan</a>
+                  <a href="{{ route('packages.special.show', 'wellcare-smart-gym-panel') }}" class="btn btn-sm sp-btn-table">Book Plan</a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div class="fw-bold sp-pkg-name">Advanced Fever Profile</div>
+                  <a href="{{ route('packages.special.show', 'wellcare-advanced-fever-profile') }}" class="text-decoration-none">
+                    <div class="fw-bold sp-pkg-name">Advanced Fever Profile</div>
+                  </a>
                   <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">Deeper Fever Screen</span>
                 </td>
                 <td class="text-secondary small">
@@ -520,12 +534,14 @@
                   <span class="sp-best-for">Fever that needs a deeper check</span>
                 </td>
                 <td class="text-center">
-                  <a href="#packages-special" class="btn btn-sm sp-btn-table">Book Plan</a>
+                  <a href="{{ route('packages.special.show', 'wellcare-advanced-fever-profile') }}" class="btn btn-sm sp-btn-table">Book Plan</a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div class="fw-bold sp-pkg-name">Cancer Detection Profile Male</div>
+                  <a href="{{ route('packages.special.show', 'wellcare-cancer-detection-profile-male') }}" class="text-decoration-none">
+                    <div class="fw-bold sp-pkg-name">Cancer Detection Profile Male</div>
+                  </a>
                   <span class="badge bg-dark-subtle text-dark border">Specialized Markers</span>
                 </td>
                 <td class="text-secondary small">
@@ -538,12 +554,14 @@
                   <span class="sp-best-for">Men who want marker screening</span>
                 </td>
                 <td class="text-center">
-                  <a href="#packages-special" class="btn btn-sm sp-btn-table">Book Plan</a>
+                  <a href="{{ route('packages.special.show', 'wellcare-cancer-detection-profile-male') }}" class="btn btn-sm sp-btn-table">Book Plan</a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div class="fw-bold sp-pkg-name">Advance ANC Profile</div>
+                  <a href="{{ route('packages.special.show', 'wellcare-advance-anc-profile') }}" class="text-decoration-none">
+                    <div class="fw-bold sp-pkg-name">Advance ANC Profile</div>
+                  </a>
                   <span class="badge bg-pink-subtle text-danger border border-danger-subtle">Comprehensive ANC</span>
                 </td>
                 <td class="text-secondary small">
@@ -556,12 +574,14 @@
                   <span class="sp-best-for">Pregnancy with a wider panel</span>
                 </td>
                 <td class="text-center">
-                  <a href="#packages-special" class="btn btn-sm sp-btn-table">Book Plan</a>
+                  <a href="{{ route('packages.special.show', 'wellcare-advance-anc-profile') }}" class="btn btn-sm sp-btn-table">Book Plan</a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div class="fw-bold sp-pkg-name">Advance Gym Panel</div>
+                  <a href="{{ route('packages.special.show', 'wellcare-advance-gym-panel') }}" class="text-decoration-none">
+                    <div class="fw-bold sp-pkg-name">Advance Gym Panel</div>
+                  </a>
                   <span class="badge bg-success-subtle text-success border border-success-subtle">Pro Training & Cardio</span>
                 </td>
                 <td class="text-secondary small">
@@ -574,12 +594,14 @@
                   <span class="sp-best-for">Serious training and heart-risk markers</span>
                 </td>
                 <td class="text-center">
-                  <a href="#packages-special" class="btn btn-sm sp-btn-table">Book Plan</a>
+                  <a href="{{ route('packages.special.show', 'wellcare-advance-gym-panel') }}" class="btn btn-sm sp-btn-table">Book Plan</a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div class="fw-bold sp-pkg-name">Advance Arthritis Package</div>
+                  <a href="{{ route('packages.special.show', 'wellcare-advance-arthritis-package') }}" class="text-decoration-none">
+                    <div class="fw-bold sp-pkg-name">Advance Arthritis Package</div>
+                  </a>
                   <span class="badge bg-secondary-subtle text-secondary-emphasis border">Advanced Joint Care</span>
                 </td>
                 <td class="text-secondary small">
@@ -592,7 +614,7 @@
                   <span class="sp-best-for">Long-standing joint symptoms</span>
                 </td>
                 <td class="text-center">
-                  <a href="#packages-special" class="btn btn-sm sp-btn-table">Book Plan</a>
+                  <a href="{{ route('packages.special.show', 'wellcare-advance-arthritis-package') }}" class="btn btn-sm sp-btn-table">Book Plan</a>
                 </td>
               </tr>
             </tbody>
@@ -671,7 +693,7 @@
               <p class="text-secondary small mb-3">
                 Fever has many causes. The <strong>Smart Fever Profile</strong> starts with CBC, ESR, and liver enzymes SGPT and SGOT. The <strong>Advanced Fever Profile</strong> adds bilirubin, CRP, and a rapid dengue NS-1 antigen test. Pick Advanced if the fever is high, lasts more than a few days, or dengue is going around.
               </p>
-              <a href="#packages-special" class="text-primary fw-bold small text-decoration-none">View Fever Profiles <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="{{ route('packages.special.show', 'wellcare-smart-fever-profile') }}" class="text-primary fw-bold small text-decoration-none">View Fever Profiles <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
 
@@ -685,7 +707,7 @@
               <p class="text-secondary small mb-3">
                 The <strong>Essential Diabetes Panel</strong> at ₹599 pairs HbA1c, which shows your average sugar over about three months, with fasting glucose and a lipid profile. It suits anyone with a family history of diabetes or a desk job.
               </p>
-              <a href="#packages-special" class="text-primary fw-bold small text-decoration-none">View Diabetes Panel <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="{{ route('packages.special.show', 'wellcare-essential-diabetes-panel') }}" class="text-primary fw-bold small text-decoration-none">View Diabetes Panel <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
 
@@ -699,7 +721,7 @@
               <p class="text-secondary small mb-3">
                 Low vitamin D and B12 are common in India, even in sunny cities. The <strong>Essential Vitamin Profile</strong> checks both for ₹799. It helps when you feel tired, have aches, or follow a vegetarian diet.
               </p>
-              <a href="#packages-special" class="text-primary fw-bold small text-decoration-none">View Vitamin Profile <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="{{ route('packages.special.show', 'wellcare-essential-vitamin-profile') }}" class="text-primary fw-bold small text-decoration-none">View Vitamin Profile <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
 
@@ -713,7 +735,7 @@
               <p class="text-secondary small mb-3">
                 This bundle lists AFP, CA 19.9, and CEA. These are tumour markers. They can rise for reasons other than cancer, such as infection or inflammation. Treat the result as a signal to talk to a doctor, never as a diagnosis.
               </p>
-              <a href="#packages-special" class="text-primary fw-bold small text-decoration-none">View Male Cancer Screen <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="{{ route('packages.special.show', 'wellcare-cancer-detection-profile-male') }}" class="text-primary fw-bold small text-decoration-none">View Male Cancer Screen <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
 
@@ -727,7 +749,7 @@
               <p class="text-secondary small mb-3">
                 ANC stands for antenatal care. Both packages list blood group and Rh type, anti-HCV, CBC, and HbA1c. Rh type matters in pregnancy, so it is checked early. Your gynaecologist can tell you whether the Essential or Advance version fits.
               </p>
-              <a href="#packages-special" class="text-primary fw-bold small text-decoration-none">View ANC Packages <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="{{ route('packages.special.show', 'wellcare-essential-anc-package') }}" class="text-primary fw-bold small text-decoration-none">View ANC Packages <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
 

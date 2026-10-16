@@ -440,7 +440,9 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="fw-bold fbc-pkg-name">Smart Full Body Checkup Plan</div>
+                                    <a href="{{ route('packages.show', 'wellcare-smart-full-body-checkup-plan') }}" class="text-decoration-none">
+                                        <div class="fw-bold fbc-pkg-name">Smart Full Body Checkup Plan</div>
+                                    </a>
                                     <span class="badge bg-light text-primary border">Popular Choice</span>
                                 </td>
                                 <td class="text-center">
@@ -453,12 +455,14 @@
                                     <span class="fbc-best-for">A simple yearly screening</span>
                                 </td>
                                 <td class="text-center">
-                                    <a href="#all-packages" class="btn btn-sm fbc-btn-table">Book Plan</a>
+                                    <a href="{{ route('packages.show', 'wellcare-smart-full-body-checkup-plan') }}" class="btn btn-sm fbc-btn-table">Book Plan</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="fw-bold fbc-pkg-name">Complete Health Checkup</div>
+                                    <a href="{{ route('packages.show', 'wellcare-complete-health-checkup') }}" class="text-decoration-none">
+                                        <div class="fw-bold fbc-pkg-name">Complete Health Checkup</div>
+                                    </a>
                                 </td>
                                 <td class="text-center">
                                     <span class="fbc-param-badge">79</span>
@@ -470,12 +474,14 @@
                                     <span class="fbc-best-for">Adults who want HbA1c and iron added</span>
                                 </td>
                                 <td class="text-center">
-                                    <a href="#all-packages" class="btn btn-sm fbc-btn-table">Book Plan</a>
+                                    <a href="{{ route('packages.show', 'wellcare-complete-health-checkup') }}" class="btn btn-sm fbc-btn-table">Book Plan</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="fw-bold fbc-pkg-name">Complete Health Checkup with Vitamin Screening</div>
+                                    <a href="{{ route('packages.show', 'wellcare-complete-health-checkup-with-vitamin-screening') }}" class="text-decoration-none">
+                                        <div class="fw-bold fbc-pkg-name">Complete Health Checkup with Vitamin Screening</div>
+                                    </a>
                                 </td>
                                 <td class="text-center">
                                     <span class="fbc-param-badge">82</span>
@@ -487,12 +493,14 @@
                                     <span class="fbc-best-for">People who feel tired often</span>
                                 </td>
                                 <td class="text-center">
-                                    <a href="#all-packages" class="btn btn-sm fbc-btn-table">Book Plan</a>
+                                    <a href="{{ route('packages.show', 'wellcare-complete-health-checkup-with-vitamin-screening') }}" class="btn btn-sm fbc-btn-table">Book Plan</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="fw-bold fbc-pkg-name">Female Special Health Checkup</div>
+                                    <a href="{{ route('packages.show', 'wellcare-female-special-health-checkup') }}" class="text-decoration-none">
+                                        <div class="fw-bold fbc-pkg-name">Female Special Health Checkup</div>
+                                    </a>
                                     <span class="badge bg-pink-subtle text-danger border border-danger-subtle">Women's Health</span>
                                 </td>
                                 <td class="text-center">
@@ -505,12 +513,14 @@
                                     <span class="fbc-best-for">Women who want hormone tests</span>
                                 </td>
                                 <td class="text-center">
-                                    <a href="#all-packages" class="btn btn-sm fbc-btn-table">Book Plan</a>
+                                    <a href="{{ route('packages.show', 'wellcare-female-special-health-checkup') }}" class="btn btn-sm fbc-btn-table">Book Plan</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="fw-bold fbc-pkg-name">Male Special Health Checkup</div>
+                                    <a href="{{ route('packages.show', 'wellcare-male-special-health-checkup') }}" class="text-decoration-none">
+                                        <div class="fw-bold fbc-pkg-name">Male Special Health Checkup</div>
+                                    </a>
                                     <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Men's Health</span>
                                 </td>
                                 <td class="text-center">
@@ -523,12 +533,14 @@
                                     <span class="fbc-best-for">Men who want a PSA test</span>
                                 </td>
                                 <td class="text-center">
-                                    <a href="#all-packages" class="btn btn-sm fbc-btn-table">Book Plan</a>
+                                    <a href="{{ route('packages.show', 'wellcare-male-special-health-checkup') }}" class="btn btn-sm fbc-btn-table">Book Plan</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="fw-bold fbc-pkg-name">Master Full Body Checkup</div>
+                                    <a href="{{ route('packages.show', 'wellcare-master-full-body-checkup') }}" class="text-decoration-none">
+                                        <div class="fw-bold fbc-pkg-name">Master Full Body Checkup</div>
+                                    </a>
                                     <span class="badge bg-success-subtle text-success border border-success-subtle">Widest Coverage</span>
                                 </td>
                                 <td class="text-center">
@@ -541,12 +553,14 @@
                                     <span class="fbc-best-for">The widest panel in one visit</span>
                                 </td>
                                 <td class="text-center">
-                                    <a href="#all-packages" class="btn btn-sm fbc-btn-table">Book Plan</a>
+                                    <a href="{{ route('packages.show', 'wellcare-master-full-body-checkup') }}" class="btn btn-sm fbc-btn-table">Book Plan</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="fw-bold fbc-pkg-name">Master Female Full Body Checkup</div>
+                                    <a href="{{ route('packages.show', 'wellcare-master-female-full-body-checkup') }}" class="text-decoration-none">
+                                        <div class="fw-bold fbc-pkg-name">Master Female Full Body Checkup</div>
+                                    </a>
                                 </td>
                                 <td class="text-center">
                                     <span class="fbc-param-badge">86</span>
@@ -558,12 +572,14 @@
                                     <span class="fbc-best-for">Women who want calcium and folic acid too</span>
                                 </td>
                                 <td class="text-center">
-                                    <a href="#all-packages" class="btn btn-sm fbc-btn-table">Book Plan</a>
+                                    <a href="{{ route('packages.show', 'wellcare-master-female-full-body-checkup') }}" class="btn btn-sm fbc-btn-table">Book Plan</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="fw-bold fbc-pkg-name">Master Male Full Body Checkup</div>
+                                    <a href="{{ route('packages.show', 'wellcare-master-male-full-body-checkup') }}" class="text-decoration-none">
+                                        <div class="fw-bold fbc-pkg-name">Master Male Full Body Checkup</div>
+                                    </a>
                                 </td>
                                 <td class="text-center">
                                     <span class="fbc-param-badge">86</span>
@@ -575,7 +591,7 @@
                                     <span class="fbc-best-for">Men who want pancreas tests too</span>
                                 </td>
                                 <td class="text-center">
-                                    <a href="#all-packages" class="btn btn-sm fbc-btn-table">Book Plan</a>
+                                    <a href="{{ route('packages.show', 'wellcare-master-male-full-body-checkup') }}" class="btn btn-sm fbc-btn-table">Book Plan</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -908,7 +924,7 @@
                             <p class="text-secondary mb-3">
                                 Start with the Smart plan at ₹799. It covers blood count, fasting sugar, lipids, liver, kidneys, thyroid, and urine.
                             </p>
-                            <a href="#all-packages" class="text-primary fw-bold small text-decoration-none">View Smart Plan <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="{{ route('packages.show', 'wellcare-smart-full-body-checkup-plan') }}" class="text-primary fw-bold small text-decoration-none">View Smart Plan <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4">
@@ -918,7 +934,7 @@
                             <p class="text-secondary mb-3">
                                 Choose the complete plan at ₹999. It adds HbA1c and iron studies. Pick the vitamin screening version at ₹1,499 if you also want vitamin D and B12.
                             </p>
-                            <a href="#all-packages" class="text-primary fw-bold small text-decoration-none">View Complete Plans <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="{{ route('packages.show', 'wellcare-complete-health-checkup') }}" class="text-primary fw-bold small text-decoration-none">View Complete Plans <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4">
@@ -928,7 +944,7 @@
                             <p class="text-secondary mb-3">
                                 Adds oestradiol, FSH, LH, and prolactin. These help when periods are irregular or you notice hormonal changes in your 40s.
                             </p>
-                            <a href="#all-packages" class="text-primary fw-bold small text-decoration-none">View Female Special <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="{{ route('packages.show', 'wellcare-female-special-health-checkup') }}" class="text-primary fw-bold small text-decoration-none">View Female Special <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4">
@@ -938,7 +954,7 @@
                             <p class="text-secondary mb-3">
                                 Adds a PSA test for prostate health. It also includes ESR, rheumatoid factor, and essential electrolytes.
                             </p>
-                            <a href="#all-packages" class="text-primary fw-bold small text-decoration-none">View Male Special <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="{{ route('packages.show', 'wellcare-male-special-health-checkup') }}" class="text-primary fw-bold small text-decoration-none">View Male Special <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4">
@@ -948,7 +964,7 @@
                             <p class="text-secondary mb-3">
                                 Covers 88 parameters, including hs-CRP cardiac inflammation, total IgE allergy markers, electrolytes, and comprehensive organ panels.
                             </p>
-                            <a href="#all-packages" class="text-primary fw-bold small text-decoration-none">View Master Checkup <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="{{ route('packages.show', 'wellcare-master-full-body-checkup') }}" class="text-primary fw-bold small text-decoration-none">View Master Checkup <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4">
