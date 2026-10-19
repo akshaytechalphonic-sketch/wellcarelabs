@@ -198,6 +198,17 @@ if (class_exists(PublicPackageController::class)) {
         Route::get('/packages/special/{package:slug}', [PublicPackageController::class, 'show'])->name('packages.special.show');
     }
 
+    // 301 Permanent Redirects for Special Packages (Old URL -> New URL)
+    Route::redirect('/packages/wellcare-smart-fever-profile', '/packages/special/wellcare-smart-fever-profile', 301);
+    Route::redirect('/packages/wellcare-essential-vitamin-profile', '/packages/special/wellcare-essential-vitamin-profile', 301);
+    Route::redirect('/packages/wellcare-cancer-detection-profile-male', '/packages/special/wellcare-cancer-detection-profile-male', 301);
+    Route::redirect('/packages/wellcare-smart-gym-panel', '/packages/special/wellcare-smart-gym-panel', 301);
+    Route::redirect('/packages/wellcare-essential-diabetes-panel', '/packages/special/wellcare-essential-diabetes-panel', 301);
+    Route::redirect('/packages/wellcare-essential-anc-package', '/packages/special/wellcare-essential-anc-package', 301);
+    Route::redirect('/packages/wellcare-advance-anc-profile', '/packages/special/wellcare-advance-anc-profile', 301);
+    Route::redirect('/packages/wellcare-advance-gym-panel', '/packages/special/wellcare-advance-gym-panel', 301);
+    Route::redirect('/packages/wellcare-advanced-fever-profile', '/packages/special/wellcare-advanced-fever-profile', 301);
+
     Route::get('/packages', [PublicPackageController::class, 'index'])->name('packages.index');
     Route::get('/packages/{package:slug}', [PublicPackageController::class, 'show'])->name('packages.show');
 

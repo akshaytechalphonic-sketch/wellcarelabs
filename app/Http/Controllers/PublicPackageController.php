@@ -33,10 +33,18 @@ class PublicPackageController extends Controller
      */
     public function show(Package $package)
     {
-       
+        // 301 Permanent Redirect: ensure special packages always use /packages/special/{slug}
+        if ($package->is_special && !request()->is('packages/special/*')) {
+            return redirect()->route('packages.special.show', ['package' => $package->slug], 301);
+        }
+
+        // If a non-special package is accessed via /packages/special/*, redirect to /packages/{slug}
+        if (!$package->is_special && request()->is('packages/special/*')) {
+            return redirect()->route('packages.show', ['package' => $package->slug], 301);
+        }
+
         // If you used route model binding with slug: routes/web.php should use {package:slug}
         return view('packages.show', compact('package'));
-
     }
 
     
