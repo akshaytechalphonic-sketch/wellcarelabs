@@ -12,9 +12,16 @@
     <title>@yield('title', 'One Health - Wellcare Labs')</title>
     <meta name="description"
         content="@yield('meta_description', 'Wellcare Labs is an ISO-certified diagnostic center in Pune offering accurate pathology tests, health checkup packages, home sample collection & timely reports.')">
-    @yield('seo')
+    @php
+        $seoSection = trim($__env->yieldContent('seo'));
+        $hasCanonicalInSeo = (bool) preg_match('/<link[^>]+rel=["\']canonical["\']/i', $seoSection);
+    @endphp
+    @if(!empty($seoSection))
+        {!! $seoSection !!}
+    @endif
 
     {{-- Canonical Tag for SEO & preventing Google duplicate penalties --}}
+    @if(!$hasCanonicalInSeo)
     @hasSection('canonical')
         @yield('canonical')
     @else
@@ -29,6 +36,7 @@
             }
         @endphp
         <link rel="canonical" href="{{ $canonicalUrl }}" />
+    @endif
     @endif
 
     <!-- Google tag (gtag.js) -->
