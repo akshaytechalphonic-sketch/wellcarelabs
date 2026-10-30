@@ -1,3 +1,21 @@
-RewriteEngine on
-RewriteCond %{REQUEST_URI} !^public
-RewriteRule ^(.*)$ public/$1 [L] 
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Prevent directory listing
+    Options -Indexes
+
+    # Block direct access to sensitive files
+    <FilesMatch "^\.env">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+
+    # 1. 301 Redirect any direct browser request with /public/ to the clean URL
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+public/?(.*)\sHTTP [NC]
+    RewriteRule ^ /%1 [R=301,L,NE]
+
+    # 2. Silently rewrite all clean requests into the public folder
+    RewriteCond %{REQUEST_URI} !^/public/ [NC]
+    RewriteCond %{REQUEST_URI} !^.*/public/ [NC]
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

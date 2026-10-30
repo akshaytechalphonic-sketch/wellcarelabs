@@ -5,6 +5,10 @@
 
     RewriteEngine On
 
+    # Redirect any direct request that explicitly has /public/ in the URL (301 for SEO)
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+public/?(.*)\sHTTP [NC]
+    RewriteRule ^ /%1 [R=301,L,NE]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

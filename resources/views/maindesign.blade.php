@@ -10,8 +10,26 @@
     <meta name="google-site-verification" content="NzUj58eJJtdK45u_vW6aYsjL9ugRRdRZzHVHdTtVDDE" />
 
     <title>@yield('title', 'One Health - Wellcare Labs')</title>
-    <meta name="description" content="@yield('meta_description', 'Wellcare Labs is an ISO-certified diagnostic center in Pune offering accurate pathology tests, health checkup packages, home sample collection & timely reports.')">
+    <meta name="description"
+        content="@yield('meta_description', 'Wellcare Labs is an ISO-certified diagnostic center in Pune offering accurate pathology tests, health checkup packages, home sample collection & timely reports.')">
     @yield('seo')
+
+    {{-- Canonical Tag for SEO & preventing Google duplicate penalties --}}
+    @hasSection('canonical')
+        @yield('canonical')
+    @else
+        @php
+            $canonicalUrl = preg_replace('#^(https?://[^/]+)/public(/.*)?$#i', '$1$2', url()->current());
+            if ($canonicalUrl !== url('/') && str_ends_with($canonicalUrl, '/')) {
+                $canonicalUrl = rtrim($canonicalUrl, '/');
+            }
+            $pageNumber = request()->get('page');
+            if ($pageNumber && (int) $pageNumber > 1) {
+                $canonicalUrl .= '?page=' . (int) $pageNumber;
+            }
+        @endphp
+        <link rel="canonical" href="{{ $canonicalUrl }}" />
+    @endif
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-54SNPWMKZR"></script>
@@ -56,27 +74,30 @@
         gtag('config', 'G-48RVT0CDZ6');
     </script>
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
 
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
 
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
 
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
 
-})(window,document,'script','dataLayer','GTM-PNMNMSMJ');</script>
-<!-- End Google Tag Manager -->
- 
+        })(window, document, 'script', 'dataLayer', 'GTM-PNMNMSMJ');</script>
+    <!-- End Google Tag Manager -->
+
     @stack('head')
 </head>
 
 <body>
 
     <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNMNMSMJ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNMNMSMJ" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <header>
         <!-- TOPBAR -->
         <div class="topbar">
@@ -180,12 +201,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </li>
 
                         {{-- <li class="nav-item {{ request()->is('awards_certificates') ? 'Published' : '' }}">
-              <a class="nav-link" href="{{ url('/awards_certificates') }}">Awards</a>
-            </li> --}}
+                            <a class="nav-link" href="{{ url('/awards_certificates') }}">Awards</a>
+                        </li> --}}
 
                         <li class="nav-item dropdown {{ request()->is('packages*') ? 'Published' : '' }}">
-                            <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                 Packages
                             </a>
                             <div class="dropdown-menu">
@@ -197,8 +217,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                         <li
                             class="nav-item dropdown {{ request()->is('tests*') || request()->is('p/*') ? 'Published' : '' }}">
-                            <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                 Services
                             </a>
                             <div class="dropdown-menu">
@@ -213,8 +232,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </li>
 
                         {{-- <li class="nav-item {{ request()->is('partner_with_us') ? 'Published' : '' }}">
-              <a class="nav-link" href="{{ url('/partner_with_us') }}">Partner with Us</a>
-            </li> --}}
+                            <a class="nav-link" href="{{ url('/partner_with_us') }}">Partner with Us</a>
+                        </li> --}}
 
                         <li class="nav-item {{ request()->is('contact_us') ? 'Published' : '' }}">
                             <a class="nav-link" href="{{ url('/contact_us') }}">Contact Us</a>
@@ -465,16 +484,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             @media (max-width: 768px) {
                 .page-footer {
                     padding-top: 25px !important;
-                    padding-bottom: 95px !important; /* Space for floating WhatsApp & Call buttons */
+                    padding-bottom: 95px !important;
+                    /* Space for floating WhatsApp & Call buttons */
                 }
 
-                .page-footer .row > div[class*="col-"] {
+                .page-footer .row>div[class*="col-"] {
                     padding-top: 14px !important;
                     padding-bottom: 14px !important;
                     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
                 }
 
-                .page-footer .row > div[class*="col-"]:last-child {
+                .page-footer .row>div[class*="col-"]:last-child {
                     border-bottom: none;
                 }
 
@@ -485,7 +505,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 }
 
                 .footer-location-list {
-                    columns: 2 !important; /* Keep 2 compact columns on mobile */
+                    columns: 2 !important;
+                    /* Keep 2 compact columns on mobile */
                     column-gap: 15px !important;
                 }
 
@@ -545,7 +566,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </ul>
                 </div>
                 <div class="col-sm-6 col-lg-3 py-3">
-                   
+
                     <p style="font-size:16px; font-weight:600; margin:0;">More</p>
                     <ul class="footer-menu">
                         <li><a href="{{ url('/tests') }}">Book a Test</a></li>
@@ -557,7 +578,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <li><a href="{{ route('faq') }}">FAQ</a></li>
                         <li><a href="{{ route('blogs.index') }}">Blogs</a></li>
                         <li><a href="{{ route('founder') }}">Meet Our Founder</a></li>
-                        {{-- <li><a  href="{{ url('/partner_with_us') }}">Partner with Us</a></li> --}}
+                        {{-- <li><a href="{{ url('/partner_with_us') }}">Partner with Us</a></li> --}}
                         <li><a href="{{ route('privacy.terms') }}">Privacy Policy & Terms and Condition</a></li>
 
 
@@ -566,7 +587,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
                 <div class="col-sm-6 col-lg-3 py-3 service-areas">
                     {{-- <h5>Health Checkup Packages & Tests in Pune & PCMC</h5> --}}
-                    <p style="font-size:16px; font-weight:600; margin:0;">Health Checkup Packages & Tests in Pune & PCMC</p>
+                    <p style="font-size:16px; font-weight:600; margin:0;">Health Checkup Packages & Tests in Pune & PCMC
+                    </p>
                     <ul class="footer-location-list">
                         <li><a href="{{ url('/packages') }}">Pimpri</a></li>
                         <li><a href="{{ url('/packages/special') }}">Aundh</a></li>
@@ -651,7 +673,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const input = document.getElementById('globalSearchInput');
             const clearBtn = document.getElementById('clearSearchBtn');
             const form = document.getElementById('globalSearchForm');
@@ -669,7 +691,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             input.addEventListener('input', toggleClearButton);
 
             // clear + redirect home on click
-            clearBtn.addEventListener('click', function() {
+            clearBtn.addEventListener('click', function () {
                 input.value = '';
                 toggleClearButton();
                 // change to homepage route or services if you prefer
@@ -677,7 +699,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             });
 
             // optional: prevent submitting empty search
-            form.addEventListener('submit', function(e) {
+            form.addEventListener('submit', function (e) {
                 if (!input.value.trim()) {
                     e.preventDefault();
                     window.location.href = "{{ route('home') }}";
@@ -685,7 +707,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const input = document.getElementById('globalSearchInput');
             const clearBtn = document.getElementById('clearSearchBtn');
             const form = document.getElementById('globalSearchForm');
@@ -699,7 +721,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             toggleClearButton();
 
             // Clear and redirect home on click
-            clearBtn.addEventListener('click', function() {
+            clearBtn.addEventListener('click', function () {
                 input.value = '';
                 clearBtn.style.display = 'none';
                 // redirect to homepage
@@ -707,7 +729,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             });
 
             // Optional: prevent empty search submit
-            form.addEventListener('submit', function(e) {
+            form.addEventListener('submit', function (e) {
                 if (!input.value.trim()) {
                     e.preventDefault();
                     window.location.href = "{{ route('home') }}";
@@ -715,7 +737,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             });
         });
 
-        (function() {
+        (function () {
             const input = document.getElementById('globalSearchInput');
             const list = document.getElementById('globalSearchList');
             const form = document.getElementById('globalSearchForm');
@@ -789,7 +811,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     '>': '&gt;',
                     '"': '&quot;',
                     "'": '&#39;'
-                } [c]));
+                }[c]));
             }
 
             async function doSearch(q) {
@@ -825,7 +847,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             if (input) {
                 input.addEventListener('input', deb);
                 // keyboard nav in dropdown
-                input.addEventListener('keydown', function(e) {
+                input.addEventListener('keydown', function (e) {
                     const items = list.querySelectorAll('.dropdown-item');
                     if (!items.length) return;
                     if (e.key === 'ArrowDown') {
@@ -853,7 +875,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 });
 
                 // hide on outside click
-                document.addEventListener('click', function(ev) {
+                document.addEventListener('click', function (ev) {
                     if (!document.querySelector('.global-search-wrapper')) return;
                     if (!document.querySelector('.global-search-wrapper').contains(ev.target)) {
                         list.style.display = 'none';
@@ -862,7 +884,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 });
 
                 // keyboard shortcut '/'
-                document.addEventListener('keydown', function(e) {
+                document.addEventListener('keydown', function (e) {
                     if (e.key === '/' && document.activeElement.tagName.toLowerCase() !== 'input' && document
                         .activeElement.tagName.toLowerCase() !== 'textarea') {
                         e.preventDefault();
@@ -874,19 +896,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             // if form submitted, let server handle full results
             if (form) {
-                form.addEventListener('submit', function() {
+                form.addEventListener('submit', function () {
                     list.style.display = 'none';
                 });
             }
         })();
 
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
             const badge = document.getElementById('cart-count-badge');
 
             // refresh badge by calling cart.count route
-            window.refreshCartBadge = async function() {
+            window.refreshCartBadge = async function () {
                 try {
                     const res = await fetch("{{ route('cart.count') }}", {
                         method: 'GET',
@@ -915,7 +937,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             // preserve your existing addToCart if present; wrap to refresh badge after success
             const originalAddToCart = window.addToCart;
-            window.addToCart = async function(type, id, qty = 1) {
+            window.addToCart = async function (type, id, qty = 1) {
                 if (typeof originalAddToCart === 'function') {
                     // call existing implementation (which already updates badge for add)
                     try {
@@ -972,7 +994,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         });
 
 
-        $(document).ajaxError(function(event, xhr) {
+        $(document).ajaxError(function (event, xhr) {
             if (xhr.status === 419) {
                 location.reload();
             }
